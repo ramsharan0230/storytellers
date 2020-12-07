@@ -73,7 +73,7 @@
                         </td>
                         <td><div class="check-list">
                             <label class="ui-checkbox ui-checkbox-primary">
-                              <input name="publish" type="checkbox" onclick="fire({{ $data->id }})" {{ $data->publish == 1 ? 'checked': ''}}>
+                              <input name="publish" type="checkbox" onclick="fire({{ $data->id }})" {{ $data->slider == 1 ? 'checked': ''}}>
                               <span class="input-span"></span>Make Slider</label>
                           </div></td>
                     </tr>
@@ -116,8 +116,8 @@
             type:'POST',
             url:'/admin/event/make-slider',
             data:{event_id: id, _token: _token},
-            success:function(data){
-                alert(data.success);
+            success:function(response){
+                alert(response.message);
             }
         });
     }

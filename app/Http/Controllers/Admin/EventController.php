@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Image;
+use DB;
 use App\Repositories\Event\EventRepository;
 use App\Repositories\Guest\GuestRepository;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -181,10 +182,16 @@ class EventController extends Controller
         $request->validate([
             'event_id' => 'required|integer'
         ]);
-        $formInput = $this->model->where('id', $request->event_id)->first();
-        $formInput['slider'] = 1;
-        $this->model->where('id', $request->event_id)->update(array('slider' => 1));  
+        $event = DB::table('events')->where('id', $request->event_id)->first();
+        if($event->slider == 0){
+            DB::table('events')->where('id', $request->event_id)->update(array('slider' => 1));
+            $message = "Event has been updated to Slider";
+        }
+        else{
+            DB::table('events')->where('id', $request->event_id)->update(array('slider' => 0));
+            $message = "Event has been removed from Slider";
+        }
 
-        return redirect()->route('event.index')->with('message', 'Event Edited Successfuly.');
+        return response(['message'=>$message, 'status'=>200]);
     }
 }

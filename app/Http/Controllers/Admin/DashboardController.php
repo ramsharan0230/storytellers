@@ -4,21 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
+use App\Repositories\Event\EventRepository;
+use App\Repositories\Guest\GuestRepository;
+use App\Repositories\Series\SeriesRepository;
 use Illuminate\Http\Request;
+use DB;
 
 class DashboardController extends Controller
 {
-    public function __construct(UserRepository $user)
+    public function __construct(UserRepository $user, EventRepository $event, GuestRepository $guest, SeriesRepository $series)
     {
         $this->user = $user;
+        $this->event = $event;
+        $this->guest = $guest;
+        $this->series = $series;
     }
 
     public function index()
     {
-        // $detail = Dashboard::first();
-        // $weekly_detail = $this->weekly_report();
+        $total_users = $this->user->all()->count(); 
+        $total_events = $this->event->all()->count(); 
+        $total_guests = $this->guest->all()->count(); 
+        $total_series = $this->series->all()->count();
+        $dashboard_allevents = DB::table('events')->orderBy('created_at', 'DESC')->limit(5)->get();
+        $dashboard_allguests = DB::table('guests')->orderBy('created_at', 'DESC')->limit(5)->get();
+        $dashboard_allusers = DB::table('users')->orderBy('created_at', 'DESC')->limit(5)->get();
 
-        return view('admin.dashboard');
+        return view('admin.dashboard', compact('total_users', 'total_events', 'total_guests', 'total_series', 'dashboard_allevents', 'dashboard_allguests', 'dashboard_allusers'));
     }
 
     public function update(Request $request, $id)

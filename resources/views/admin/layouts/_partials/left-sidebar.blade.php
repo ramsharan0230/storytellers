@@ -52,7 +52,7 @@ $user_access = explode(',', $user->access_level);
             {{-- events --}}
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-sitemap"></i>
+                    <i class="sidebar-item-icon fa fa-calendar"></i>
                     <span class="nav-label">Events</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -78,7 +78,7 @@ $user_access = explode(',', $user->access_level);
             {{-- Series --}}
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-sitemap"></i>
+                    <i class="sidebar-item-icon fa fa-list"></i>
                     <span class="nav-label">Series</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
@@ -103,8 +103,27 @@ $user_access = explode(',', $user->access_level);
 
             {{-- Report --}}
             <li>
-                <a href="#"><i class="sidebar-item-icon fa fa-globe"></i>
-                    <span class="nav-label">Report</span></a>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-users"></i>
+                    <span class="nav-label">Users</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('users.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All lists
+                        </a>
+                    </li>
+                    <li>
+                        {{-- <a href="{{route('user.create')}}"> --}}
+                            <a href="{{route('users.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add new
+                        </a>
+                    </li>
+
+                </ul>
             </li>
             {{-- Report --}}
 

@@ -27,24 +27,27 @@ Route::group(['namespace' => 'Admin'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Admin',], function () {
     Route::get('logout', 'LoginController@Logout')->name('logout');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
-        Route::get('/events', 'EventController@index')->name('event.index');
-        Route::get('/event/create', 'EventController@create')->name('event.create');
-        Route::post('/event/store', 'EventController@store')->name('event.store');
-        Route::get('/event/edit/{id}', 'EventController@edit')->name('event.edit');
-        Route::delete('/event/destroy/{id}', 'EventController@destroy')->name('event.destroy');
-        Route::put('/event/update/{guest}', 'EventController@update')->name('event.update');
-        Route::post('/event/make-slider', 'EventController@makeSlider');
+    Route::resource('users', 'UserController');
 
-        Route::get('/guests', 'GuestController@index')->name('guest.index');
-        Route::get('/guest/create', 'GuestController@create')->name('guest.create');
-        Route::post('/guest/store', 'GuestController@store')->name('guest.store');
-        Route::get('/guest/edit/{id}', 'GuestController@edit')->name('guest.edit');
-        Route::put('/guest/update/{guest}', 'GuestController@update')->name('guest.update');
-        Route::post('/guest/delete/{id}', 'GuestController@delete')->name('guest.delete');
-        
-        Route::resource('series', 'SeriesController');
+    Route::get('/events', 'EventController@index')->name('event.index');
+    Route::get('/event/create', 'EventController@create')->name('event.create');
+    Route::post('/event/store', 'EventController@store')->name('event.store');
+    Route::get('/event/edit/{id}', 'EventController@edit')->name('event.edit');
+    Route::delete('/event/destroy/{id}', 'EventController@destroy')->name('event.destroy');
+    Route::put('/event/update/{guest}', 'EventController@update')->name('event.update');
+    Route::post('/event/make-slider', 'EventController@makeSlider');
+
+    Route::get('/guests', 'GuestController@index')->name('guest.index');
+    Route::get('/guest/create', 'GuestController@create')->name('guest.create');
+    Route::post('/guest/store', 'GuestController@store')->name('guest.store');
+    Route::get('/guest/edit/{id}', 'GuestController@edit')->name('guest.edit');
+    Route::put('/guest/update/{guest}', 'GuestController@update')->name('guest.update');
+    Route::post('/guest/delete/{id}', 'GuestController@delete')->name('guest.delete');
+    
+    Route::resource('series', 'SeriesController');
 });
 
 Route::group(['namespace' => 'Front'], function () {

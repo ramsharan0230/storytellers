@@ -64,7 +64,7 @@
                     <span class="brand">
                         {{-- {{ $dashboard_composer->site_name }} --}} Story Teller
                     </span>
-                    <span class="brand-mini">MEGA</span>
+                    <span class="brand-mini">StoryTeller</span>
                 </a>
             </div>
             <div class="flexbox flex-1">

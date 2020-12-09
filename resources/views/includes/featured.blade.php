@@ -11,10 +11,10 @@
                    <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                        <div class="featured-card">
                            <a href="#" class="feature-image">
-                               <img src="images/home_anil-chitrakar.jpg" alt="image"><span class="feature-time">29:30</span>
+                               <img src="{{ asset('images/home_anil-chitrakar.jpg') }}" alt="image"><span class="feature-time">29:30</span>
                             </a>
                             <a href="#" class="featured-title-wrapp">
-                                <span class="featured-icon"><img src="images/icon_arrrow-right_2-u4551-fr.png" id="hidden-on-hover" alt="icon"><img src="images/icon_arrrow-right_2-2.png" id="display-on-hover" alt="icon"></span>
+                                <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
                                     <h3>“We should look forward to a smart country.”</h3>
                                     <p class="featured-name">Mr. Anil Chitrakar</p>
@@ -25,10 +25,12 @@
                    <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                        <div class="featured-card">
                            <a href="#" class="feature-image">
-                               <img src="images/home_biswas-dhakal.jpg" alt="image"><span class="feature-time">29:30</span>
+                               <img src="{{ asset('images/home_biswas-dhakal.jpg') }}" alt="image"><span class="feature-time">29:30</span>
                             </a>
                             <a href="#" class="featured-title-wrapp">
-                                <span class="featured-icon"><img src="images/icon_arrrow-right_2-u4551-fr.png" id="hidden-on-hover" alt="icon"><img src="images/icon_arrrow-right_2-2.png" id="display-on-hover" alt="icon"></span>
+                                <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon">
+                                    <img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon">
+                                </span>
                                 <div class="featured-title-side">
                                     <h3>From traditional Janakpur to digital Nepal. Biswas Dhakal on how life ...</h3>
                                     <p class="featured-name">Mr. Biswas Dhakal</p>
@@ -39,10 +41,10 @@
                    <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                        <div class="featured-card">
                            <a href="#" class="feature-image">
-                               <img src="images/home_shilshila-acharya.jpg" alt="image"><span class="feature-time">29:30</span>
+                               <img src="{{ asset('images/home_shilshila-acharya.jpg') }}" alt="image"><span class="feature-time">29:30</span>
                             </a>
                             <a href="#" class="featured-title-wrapp">
-                                <span class="featured-icon"><img src="images/icon_arrrow-right_2-u4551-fr.png" id="hidden-on-hover" alt="icon"><img src="images/icon_arrrow-right_2-2.png" id="display-on-hover" alt="icon"></span>
+                                <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
                                     <h3>Following her passion she took the less travelled road; the story of ...</h3>
                                     <p class="featured-name">Ms. Shilshila Acharya</p>
@@ -53,10 +55,10 @@
                    <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                        <div class="featured-card">
                            <a href="#" class="feature-image">
-                               <img src="images/home_allen.jpg" alt="image"><span class="feature-time">29:30</span>
+                               <img src="{{ asset('images/home_allen.jpg') }}" alt="image"><span class="feature-time">29:30</span>
                             </a>
                             <a href="#" class="featured-title-wrapp">
-                                <span class="featured-icon"><img src="images/icon_arrrow-right_2-u4551-fr.png" id="hidden-on-hover" alt="icon"><img src="images/icon_arrrow-right_2-2.png" id="display-on-hover" alt="icon"></span>
+                                <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
                                     <h3>The man who gave up power and recognition to work in his country ...</h3>
                                     <p class="featured-name">Mr. Allen B. Tuladhar</p>

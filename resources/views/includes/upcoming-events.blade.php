@@ -8,10 +8,10 @@
             <div class="col-lg-8 col-md-8 col-12">
                 <div class="event-slider">
                     <div class="image-wrapper">
-                        <a href="#" class="event-slider-image"><img src="images/event-storytellers-series.jpg" alt="image"></a>
+                        <a href="#" class="event-slider-image"><img src="{{ asset('images/event-storytellers-series.jpg') }}" alt="image"></a>
                     </div>
                     <div class="image-wrapper">
-                        <a href="#" class="event-slider-image"><img src="images/event-6-words.jpg" alt="image"></a>
+                        <a href="#" class="event-slider-image"><img src="{{ asset('images/event-6-words.jpg') }}" alt="image"></a>
                     </div>
                 </div>
             </div>

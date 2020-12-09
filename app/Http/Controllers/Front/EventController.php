@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\User\UserRepository;
+use App\Models\Event;
+use DB;
 
-class UserController extends Controller
+class EventController extends Controller
 {
-    private $model = null;
-
-    public function __construct(UserRepository $user)
-    {
-        $this->user = $user;
-        $this->model = $user;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -89,5 +83,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function eventDetail($slug){
+        $allEvents = Event::where('status', 'upcoming')->get();
+        $event = Event::where('slug', $slug)->with('guest')->first();
+
+        return view('event-detail', compact('event', 'allEvents'));
     }
 }

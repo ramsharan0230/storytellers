@@ -52,7 +52,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
 
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/about-us', 'HomeController@about-us')->name('about-us');
-    Route::get('/contact', 'HomeController@contact')->name('contact');
-    Route::get('/post-detail/{slug}', 'PostController@index')->name('post-detail');
+    Route::get('/about-us', 'HomeController@about')->name('about-us');
+    Route::get('/contact-us', 'HomeController@contact')->name('contact-us');
+    Route::get('/bookings', 'HomeController@boookings')->name('bookings');
+    Route::get('/video-list', 'HomeController@videoList')->name('video-list');
+    Route::get('/events/{slug}', 'EventController@eventDetail')->name('event-detail');
 });

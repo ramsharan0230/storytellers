@@ -9,13 +9,12 @@
 
 <!-- header section ends -->
 
-<div class="abstract-background"><img src="images/abstract-background.svg" alt="image"></div>
+<div class="abstract-background"><img src="{{ ('images/abstract-background.svg') }}" alt="image"></div>
 @include('includes.main-slider')
 
 <!-- main slider section ends -->
 
 <!-- featured recent section starts -->
-
 
 @include('includes.featured')
 

@@ -1,7 +1,7 @@
 <header id="header">
     <div class="container">
         <div class="header-wrapp">
-            <a href="index.php" class="logo"><img src="images/logo.svg" alt="logo-image"></a>
+            <a href="index.php" class="logo"><img src="{{ asset('images/logo.svg') }}" alt="logo-image"></a>
             <nav>
                 <ul>
                     <li class="drop-menu-parent">
@@ -30,13 +30,7 @@
                                         <div class="col-lg-3">
                                             <a href="#" class="link-title">Past Events</a>
                                             <ul class="sub-menu-wrapp">
-                                                <li><a href="video-list.php">STARTUP SERIES</a></li>
-                                                <li><a href="video-list.php">MUSIC SERIES - 1</a></li>
-                                                <li><a href="video-list.php">EDUCATORS' SERIES</a></li>
-                                                <li><a href="video-list.php">SOCIAL CHANGE MAKERS' SERIES</a></li>
-                                                <li><a href="video-list.php">MUSIC SERIES - 2</a></li>
-                                                <li><a href="video-list.php">ENVIRONMENT SERIES</a></li>
-                                                <li><a href="video-list.php">MUSIC SERIES EXCLUSIVE WITH NIGHT</a></li>
+                                                    
                                             </ul>
                                         </div>
                                         <div class="col-lg-2">
@@ -60,3 +54,9 @@
         </div>
     </div>
 </header>
+
+<div class="header-push"></div>
+
+<!-- header section ends -->
+
+<div class="abstract-background"><img src="{{ asset('images/abstract-background.svg') }}" alt="image"></div>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Contact Us')
+@section('title', 'Bookings')
 @push('styles')
     <x-embed-styles />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/inner.css') }}">
@@ -9,19 +9,13 @@
 @section('content')
 @include('includes.header')
 
-<section class="contact-page">
+<section class="contact-page all-sec-padding">
     <div class="container">
-        <div class="contact-page-title about-title-side">
-            <h2>Contact Us:</h2>
+        <div class="contact-page-title about-title-side booking-wrapp">
+            <h2>Book your Tickets:</h2>
+            <p>Fill the below form of Simply Call us at 0000000000 to Book your Tickets.</p>
         </div>
-        <div class="contact-address all-sec-padding">
-            <ul>
-                <li>Patan Dhoka, Lalitpur, Nepal</li>
-                <li>Tel: +977-1-0000000</li>
-                <li><a href="#">Email: info@thestorytellersnepal.com</a></li>
-            </ul>
-        </div>
-        <div class="contact-form-section all-sec-padding">
+        <div class="contact-form-section">
             <div class="row">
                 <div class="col-lg-6">
                     <form action="" class="contact-form">

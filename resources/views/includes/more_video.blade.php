@@ -5,8 +5,8 @@
                 <a href="#" class="about-title-side event-title"><h2>Know more about us</h2></a>
                 <a href="#" class="slider-btn btn about-btn" tabindex="0">
                     <p>More</p>
-                    <img src="images/icon_arrrow right-1.png" id="hide-in-hover" alt="icon">
-                    <img src="images/icon_arrrow right-2.png" id="display-in-hover" alt="icon">
+                    <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
+                    <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                 </a>
             </div>
             <div class="col-lg-8 col-md-8 col-12">

@@ -25,4 +25,8 @@ class Event extends Model
     public function series(){
         return $this->hasMany('App\Models\Series');
     }
+
+    public function guest(){
+        return $this->belongsTo('App\Models\Guest');
+    }
 }

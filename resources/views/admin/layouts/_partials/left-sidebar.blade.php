@@ -101,6 +101,24 @@ $user_access = explode(',', $user->access_level);
             </li>
             {{-- Series end --}}
 
+            {{-- blog --}}
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-calendar"></i>
+                    <span class="nav-label">Blog</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('blogs.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {{-- blog end --}}
+
             {{-- Report --}}
             <li>
                 <a href="javascript:;">

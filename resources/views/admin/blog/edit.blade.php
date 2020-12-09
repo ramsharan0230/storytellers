@@ -24,7 +24,7 @@
         </ul>
     </div>
     @endif
-    <form method="post" action="{{route('blog.update', $detail->id)}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('blogs.update', $detail->id)}}" enctype="multipart/form-data">
         @csrf
         @method('put')
 
@@ -75,7 +75,7 @@
                             <div id="wrapper" class="mt-2">
                                 <div id="image-holder">
                                     @if($detail->image)
-                                    <img src="{{asset('images/thumbnail/'. $detail->image)}}"
+                                    <img src="{{asset('images/banners/'. $detail->image)}}"
                                         style="margin-top:12px; margin-bottom:12px;" height="120px" width="120px"
                                         alt="">
                                     @endif

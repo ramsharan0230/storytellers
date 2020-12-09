@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::post('/guest/delete/{id}', 'GuestController@delete')->name('guest.delete');
     
     Route::resource('series', 'SeriesController');
+    Route::resource('blogs', 'BlogController');
 });
 
 Route::group(['namespace' => 'Front'], function () {
@@ -55,6 +56,7 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/about-us', 'HomeController@about')->name('about-us');
     Route::get('/contact-us', 'HomeController@contact')->name('contact-us');
     Route::get('/bookings', 'HomeController@boookings')->name('bookings');
+    Route::get('/blogs', 'BlogController@blogs')->name('blogs');
     Route::get('/video-list', 'HomeController@videoList')->name('video-list');
     Route::get('/events/{slug}', 'EventController@eventDetail')->name('event-detail');
 });

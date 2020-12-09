@@ -12,7 +12,7 @@
     <section class="innerpage-section">
         <div class="container">
             <div class="innerpage-video-wrapp">
-                <x-embed url="{{ $event->video_link }}" aspect-ratio="5:3" />
+                <iframe width="400px" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-12">
@@ -43,9 +43,11 @@
                                     </div>
                                 </div>
                                 <div class="story-image-section">
-                                    <img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}">
-                                    <img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}">
-                                    <img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}">
+                                    @forelse ($guestVideos as $guestVideo)
+                                        <a href="{{ route('event-detail', $guestVideo->slug) }}"><img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}"></a>
+                                        @empty
+                                        <p>No guest video found</p>
+                                    @endforelse
                                 </div>
                             </div>
                         </div>
@@ -58,7 +60,7 @@
                         @forelse ($allEvents as $similer_video)
                             <div class="featured-card">
                                 <a href="#" class="feature-image">
-                                    <x-embed url="{{ $similer_video->video_link }}" aspect-ratio="4:3" />
+                                    <iframe src="https://www.youtube.com/embed/{{$event->youtubeVideo($similer_video->video_link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </a>
                                 <a href="#" class="featured-title-wrapp">
                                     <div class="featured-title-side">
@@ -68,6 +70,14 @@
                                 </a>
                             </div>
                         @empty
+
+                        <div class="featured-card">
+                            <a href="#" class="featured-title-wrapp">
+                                <div class="featured-title-side">
+                                    <h3>No Video Found</h3>
+                                </div>
+                            </a>
+                        </div>
                             
                         @endforelse
                     </div>
@@ -77,23 +87,23 @@
         <div class="inner-video-section">
             <div class="container">
                 <div class="about-title-side innerpage-title">
-                    <a href="#"><h2><span>Watch:</span> The Agony of an untold story unleashed.</h2></a>
+                    <a href="#"><h2><span>Watch:</span> {{ $featuredVideo->title }}.</h2></a>
                 </div>
                 <div class="row">
                     <div class="col-lg-7 col-md-7 col-12">
                         <div class="inner-video-sec">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/6dKhHv6WLbY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$event->youtubeVideo($featuredVideo->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5 col-12">
                         <div class="inner-video-content">
                             <a href="#" class="featured-title-wrapp video-sec-title">
-                                <span class="featured-icon"><img src="images/icon_arrrow-right_2-u4551-fr.png" id="hidden-on-hover" alt="icon"><img src="images/icon_arrrow-right_2-2.png" id="display-on-hover" alt="icon"></span>
+                                <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
-                                    <span class="featured-name video-name">Ms. Mina Singh, Singer, Night Band</span>
+                                    <span class="featured-name video-name">{{ $featuredVideo->guest->name }}, {{ $featuredVideo->guest->designation }}, {{ $featuredVideo->guest->organization }}</span>
                                 </div>
                             </a>
-                            <p>Meena Singh was born and raised in Nagaland, India. She was 8 years old when her family decided to move back to Nepal. Led by her grandfather, their return was unexpected and very sudden. They returned back to their roots, only to find all of their belongings had been snatched away by relatives. All their savings had dried up in an attempt to get back what was theirs. After two years, the family’s only breadwinner, Singh’s grandfather passed away leaving them with nothing to hold on to.</p>
+                            <p>{{ $featuredVideo->guest->description }}</p>
                         </div>
                     </div>
                 </div>
@@ -102,28 +112,29 @@
 
         <div class="inner-block-section all-sec-padding">
             <div class="container">
+                @if(count($blogs)>=3)
                 <div class="row">
                     <div class="col-lg-7 col-md-7 col-12">
                         <a href="#" class="block-left-side">
                             <div href="#" class="slider-btn block-btn btn " tabindex="0">
-                                <img src="images/icon_arrrow right-1.png" id="hide-in-hover" alt="icon">
-                                <img src="images/icon_arrrow right-2.png" id="display-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                             </div>
                             <div class="block-content">
                                 <div class="about-title-side">
-                                    <h2>The 3 ‘E’s of Storytelling to craft an engaging story</h2>
-                                    <p>When we share personal stories, they include events that have occurred some time in the past. It can be decades old or a fresh one. In some sense, stories, as you set out to craft them at first go, will be in some form of the past tense, because they have already have happened.  ...</p>
+                                    <h2>{{ $blogs[0]->title }}</h2>
+                                    <p>{{ $blogs[0]->description }}</p>
                                 </div>
                             </div>
                         </a>
                         <a href="#" class="block-left-side block-left-second">
                             <div href="#" class="slider-btn block-btn btn " tabindex="0">
-                                <img src="images/icon_arrrow right-1.png" id="hide-in-hover" alt="icon">
-                                <img src="images/icon_arrrow right-2.png" id="display-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                             </div>
                             <div class="block-content block-second-content">
                                 <div class="about-title-side ">
-                                    <h2>The stories are recited by the story makers themselves and so these stories can not be more authentic.</h2>
+                                    <h2>{{ $blogs[1]->title }}</h2>
                                 </div>
                             </div>
                         </a>
@@ -132,52 +143,52 @@
                         <a href="#" class="block-left-side block-right-side">
                             <div class="block-content">
                                 <div class="about-title-side">
-                                    <h2>4 Storytelling Essentials You Can’t Miss</h2>
-                                    <img src="images/home_blog3_small.jpg" class="block-right-image" alt="image">
-                                    <p>We gather stories from people from different fields of life, that can simply have an impact - be it personal, professional, social, or any other fields. We stand here with an effort of bringing in stories to you,</p>
+                                    <h2>{{ $blogs[2]->title }}</h2>
+                                    <img src="{{ asset('images/banners').'/'.$blogs[2]->image }}" class="block-right-image" alt="image">
+                                    <p>{{ $blogs[2]->description }}</p>
                                 </div>
                             </div>
                             <div href="#" class="slider-btn block-btn btn " tabindex="0">
-                                <img src="images/icon_arrrow right-1.png" id="hide-in-hover" alt="icon">
-                                <img src="images/icon_arrrow right-2.png" id="display-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                             </div>
                         </a>
                     </div>
                 </div>
+                @endif
+                @if(count($blogs)>=5)
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-12">
                         <a href="#" class="block-left-side block-right-side second-row">
                             <div class="block-content second-row-content">
                                 <div class="about-title-side second-row-title">
-                                    <img src="images/image.png" class="block-right-image" alt="image">
-                                    <h2>10 secrets to write better stories</h2>
+                                    <img width="100%" src="{{ asset('images/banners').'/'.$blogs[3]->image }}" class="block-right-image" alt="image">
+                                    <h2>{{ $blogs[3]->title }}</h2>
                                 </div>
                             </div>
                             <div href="#" class="slider-btn block-btn btn " tabindex="0">
-                                <img src="images/icon_arrrow right-1.png" id="hide-in-hover" alt="icon">
-                                <img src="images/icon_arrrow right-2.png" id="display-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-7 col-md-7 col-12">
                         <a href="#" class="block-left-side">
                             <div href="#" class="slider-btn block-btn btn " tabindex="0">
-                                <img src="images/icon_arrrow right-1.png" id="hide-in-hover" alt="icon">
-                                <img src="images/icon_arrrow right-2.png" id="display-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
+                                <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                             </div>
                             <div class="block-content">
                                 <div class="about-title-side">
-                                    <h2>What is <br>storytelling</h2>
-                                    <p>We stand here with an effort of bringing in stories to you, the stories which are cocooned within themselves. We gather stories from people from different fields of life, that can simply have an impact - be it personal, professional, social, or any other fields.</p>
+                                    <h2>{{ $blogs[4]->title }}</h2>
+                                    <p>{{ $blogs[4]->description }}</p>
                                 </div>
                             </div>
                         </a>
-
                         <span class="read-btn-wrapp"><a href="#" class="read-more-btn btn">Read More Stories</a></span>
-                    
                     </div>
-                    
                 </div>
+                @endif
             </div>
         </div>
         
@@ -191,7 +202,7 @@
                     <div class="col-lg-8 col-md-8 col-12">
                         <div class="inner-event">
                             <div class="image-wrapper">
-                                <a href="#" class="event-slider-image"><img src="images/music series_3.jpg" alt="image"></a>
+                                <a href="#" class="event-slider-image"><img src="{{ asset('images/music series_3.jpg') }}" alt="image"></a>
                             </div>
                         </div>
                     </div>

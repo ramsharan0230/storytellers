@@ -5,10 +5,19 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Blog;
 use DB;
 
 class EventController extends Controller
 {
+    protected $pastEvents = null;
+    protected $dayAgo = 6;
+
+    public function __construct()
+    {
+        $dayToCheck = \Carbon\Carbon::now()->subDays($this->dayAgo)->format('Y-m-d');
+        $this->pastEvents = Event::whereDate("created_at", '>=', $dayToCheck)->get();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +97,13 @@ class EventController extends Controller
     public function eventDetail($slug){
         $allEvents = Event::where('status', 'upcoming')->get();
         $event = Event::where('slug', $slug)->with('guest')->first();
+        $guestVideos = Event::where('guest_id', $event->guest->id)
+        ->orWhere('title', 'like', '%' . $event->title . '%')
+        ->get();
 
-        return view('event-detail', compact('event', 'allEvents'));
+        $featuredVideo = Event::where('video_type', 'featured')->first();
+        $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
+        $pastEvents = $this->pastEvents;
+        return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'featuredVideo', 'blogs', 'pastEvents'));
     }
 }

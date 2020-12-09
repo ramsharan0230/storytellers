@@ -28,7 +28,7 @@
         <div class="ibox-head">
             <div class="ibox-title">All Blogs</div>
             <div>
-                <a class="btn btn-info btn-md" href="{{route('blog.create')}}">Add Blogs</a>
+                <a class="btn btn-info btn-md" href="{{route('blogs.create')}}">Add Blogs</a>
             </div>
         </div>
 
@@ -56,18 +56,18 @@
                         <td>{{$data->title}}</td>
                         <td>{{$data->slug}}</td>
 
-                        <td><a href="/images/main/{{$data->image}}" target="_blank"><img
-                                    style="height:120px; width: 120px;"
-                                    src="{{$data->image ? asset('/images/thumbnail/' . $data->image) : '/assets/admin/images/image.jpg' }}"></a>
+                        <td><a href="#" target="_blank"><img
+                                    style="height:80px; width: 120px;"
+                                    src="{{$data->image ? asset('/images/banners/' . $data->image) : '/assets/admin/images/image.jpg' }}"></a>
                         </td>
 
                         <td>{{$data->publish == 1 ? 'Published' : 'Not Published'}}</td>
 
                         <td>
-                            <a href="{{route('blog.edit', $data->id)}}" class="btn btn-success btn-sm"><i
+                            <a href="{{route('blogs.edit', $data->id)}}" class="btn btn-success btn-sm"><i
                                     class="fa fa-edit"></i></a>
 
-                            <form class="adjust-delete-button" action="{{route('blog.destroy', $data->id)}}"
+                            <form class="adjust-delete-button" action="{{route('blogs.destroy', $data->id)}}"
                                 method="post">
                                 @csrf
                                 @method('delete')

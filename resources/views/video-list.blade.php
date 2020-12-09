@@ -12,97 +12,37 @@
 <section class="video-list-page">
     <div class="container">
         <div class="innerpage-video-wrapp video-list-wrapper">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/tqZ0prUretY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-            <a href="#" class="featured-title-side video-list-title">
-                <span class="featured-name video-name video-list-name">Mr. Anil Chitrakar</span>
-                <p>Chairman, Himalayan Climate Initiative</p>
-            </a>
+            @forelse ($allEvents as $key => $featureEvent)
+                @if($key == 0)
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$featureEvent->youtubeVideo($featureEvent->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+                <a href="#" class="featured-title-side video-list-title">
+                    <span class="featured-name video-name video-list-name">Mr. Anil Chitrakar</span>
+                    <p>{{ $featureEvent->guest->name }}, {{ $featureEvent->guest->organization }}</p>
+                </a>
+                @endif
+            @empty
+            <p>No Event Found</p>
+            @endforelse
+            
         </div>
         <div class="video-list-wrapp">
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/vEoAqJMwuRQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Suman Shakya</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wGqJFtxWoqM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Divesh Mulmi</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/-S3klCT-5MM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Shyam Lal Kakshapati</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/HrYA_K3AU0c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Ramesh Bhushal</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/USqPtAWLC_s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Prasun Ghimire</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/ypOM86_HXU8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Vidhan Rana</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/t5p4bcClzV0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
-                <a href="#" class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Suryaman Shakya</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </a>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/pGzeP9t2SOM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>               
-                <div class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Avishek KC</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
+            @forelse ($allEvents as $event)
+                <div class="video-block">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+                    <a href="#" class="featured-title-side video-list-title">
+                        <span class="featured-name video-name video-list-name">{{ $event->guest->name }}</span>
+                        <p>{{ $event->guest->designation }}, {{ $event->guest->organization }}</p>
+                    </a>
                 </div>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/EaY6pYy5L_Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              
-                <div class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Rohit John Chhetri</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
+            @empty
+                <div class="video-block">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wGqJFtxWoqM)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+                    <a href="#" class="featured-title-side video-list-title">
+                        <span class="featured-name video-name video-list-name"></span>
+                        <p>No New Event Found!!!</p>
+                    </a>
                 </div>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/yLtIlQcO6p0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              
-                <div class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Binod Shahi</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </div>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/cAx1EX-pj7g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>             
-                <div class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Suraj Shrestha</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </div>
-            </div>
-            <div class="video-block">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/QaEOQdXZfkU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>             
-                <div class="featured-title-side video-list-title">
-                    <span class="featured-name video-name video-list-name">Mr. Arniko Singh</span>
-                    <p>Chairman, Himalayan Climate Initiative</p>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>
@@ -117,7 +57,7 @@
             <div class="col-lg-8 col-md-8 col-12">
                 <div class="inner-event">
                     <div class="image-wrapper">
-                        <a href="#" class="event-slider-image"><img src="images/music series_3.jpg" alt="image"></a>
+                        <a href="#" class="event-slider-image"><img src="{{ asset('images/music series_3.jpg') }}" alt="image"></a>
                     </div>
                 </div>
             </div>

@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::delete('/event/destroy/{id}', 'EventController@destroy')->name('event.destroy');
     Route::put('/event/update/{guest}', 'EventController@update')->name('event.update');
     Route::post('/event/make-slider', 'EventController@makeSlider');
+    Route::post('/event/make-featured', 'EventController@makeFeatured');
 
     Route::get('/guests', 'GuestController@index')->name('guest.index');
     Route::get('/guest/create', 'GuestController@create')->name('guest.create');
@@ -49,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     
     Route::resource('series', 'SeriesController');
     Route::resource('blogs', 'BlogController');
+    Route::resource('user', 'UserController');
+    Route::resource('bookings', 'BookingController');
 });
 
 Route::group(['namespace' => 'Front'], function () {
@@ -57,6 +60,10 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/contact-us', 'HomeController@contact')->name('contact-us');
     Route::get('/bookings', 'HomeController@boookings')->name('bookings');
     Route::get('/blogs', 'BlogController@blogs')->name('blogs');
+    Route::get('/blog/{slug}', 'BlogController@blogDetail')->name('blog-detail');
     Route::get('/video-list', 'HomeController@videoList')->name('video-list');
+    Route::get('/featured-video-list', 'HomeController@FeaturedVideo')->name('featured-video-list');
     Route::get('/events/{slug}', 'EventController@eventDetail')->name('event-detail');
+    Route::post('/booking/store', 'FrontController@bookings')->name('booking.store');
+    Route::get('/series/{id}', 'EventController@seriesDetail')->name('series-detail');
 });

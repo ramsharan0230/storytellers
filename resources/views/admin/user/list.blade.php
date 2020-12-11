@@ -36,7 +36,6 @@
                         <th>SN</th>
                         <th>Full name</th>
                         <th>Email</th>
-                        <th>Role</th>
                         <th>Status</th>
                         <th>Options</th>
                     </tr>
@@ -50,7 +49,6 @@
                         <td>{{++$key}}</td>
                         <td>{{$data->name}}</td>
                         <td>{{$data->email}}</td>
-                        <td>{{ucfirst($data->role)}}</td>
                         <td>{{$data->publish == 1 ? 'Published' : 'Not Published'}}</td>
                         <td>
                             <a href="{{route('user.edit', $data->id)}}" class="btn btn-success btn-sm"><i

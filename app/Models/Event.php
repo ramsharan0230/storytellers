@@ -11,7 +11,7 @@ class Event extends Model
     use HasFactory, Sluggable;
 
     protected $table = 'events';
-    protected $fillable = ['guest_id', 'title', 'datetime', 'video_link', 'highlight_text', 'status', 'banner_image', 'descriptions', 'user_id'];
+    protected $fillable = ['guest_id', 'series_id', 'title', 'datetime', 'video_link', 'highlight_text', 'status', 'banner_image', 'descriptions', 'user_id'];
 
     public function sluggable()
     {
@@ -29,7 +29,7 @@ class Event extends Model
     }
 
     public function series(){
-        return $this->hasMany('App\Models\Series');
+        return $this->belongsTo('App\Models\Series');
     }
 
     public function guest(){

@@ -1,5 +1,14 @@
 @extends('admin.layouts.app')
 @section('page_title', 'Add user')
+@push('styles')
+<style media="screen">
+    .line {
+        width: 100%;
+        height: 1px;
+        background-color: green;
+    }
+</style>
+@endpush
 @section('content')
 
 <div class="page-content fade-in-up">
@@ -53,39 +62,25 @@
                     value="{{old('password_confirmation')}}" placeholder="Enter Password">
                 </div>
 
+                <div class="form-group">
+                  <label>Select Banner Image</label>
+                  <input type="file" id="fileUpload" class="form-control" name="banner_image">
+                  <div id="wrapper" class="mt-2">
+                    <div id="image-holder">
+                    </div>
+                  </div>
+                </div>
+
                 <div class="check-list">
                   <label class="ui-checkbox ui-checkbox-primary">
                     <input name="publish" type="checkbox" checked>
                     <span class="input-span"></span>Publish</label>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="ibox">
-                  <div class="ibox-head">
-                    <div class="ibox-title">Permissions</div>
-                    <div class="ibox-tools">
-                    </div>
-                  </div>
-                  <div class="ibox-body" style="">
-                    @if(isset($access_options) && count($access_options))
-                    @foreach($access_options as $key => $option)
-                    <div class="check-list mb-3">
-                      <label class="ui-checkbox ui-checkbox-primary">
-                        <input type="checkbox" value={{ $key }} name="access[]">
-                        <span class="input-span"></span>{{ $option }}
-                      </label>
-                    </div>
-                    @endforeach
-                    @endif
-
-                  </div>
-                </div>
-              </div>
             </div>
-            <br>
 
             <div class="form-group">
-              <button class="btn btn-block btn-primary" type="submit">Save</button>
+              <button class="btn btn-primary mt-2" type="submit">Save</button>
             </div>
           </form>
         </div>
@@ -99,7 +94,10 @@
 @push('scripts')
 
 @endpush
-
+@push('scripts')
+@include('admin.layouts._partials.ckeditorsetting')
+@include('admin.layouts._partials.imagepreview')
+@endpush
 {{--
 <div class="form-group">
   <label>Image</label>

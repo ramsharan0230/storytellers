@@ -22,7 +22,7 @@
         <div class="ibox-head">
             <div class="ibox-title">All guests</div>
             <div>
-                {{-- <a class="btn btn-info btn-md" href="{{route('category.create')}}">Add category</a> --}}
+                <a class="btn btn-info btn-md" href="{{route('guest.create')}}">Add Guest</a>
             </div>
         </div>
 

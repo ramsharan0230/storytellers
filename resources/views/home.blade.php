@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Story Teller | Home')
+@section('title', 'Home')
 
 @section('content')
 @include('includes.header')

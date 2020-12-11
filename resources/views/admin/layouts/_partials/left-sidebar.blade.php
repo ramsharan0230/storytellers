@@ -49,32 +49,6 @@ $user_access = explode(',', $user->access_level);
             </li>
             {{-- Guests end --}}
 
-            {{-- events --}}
-            <li>
-                <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-calendar"></i>
-                    <span class="nav-label">Events</span>
-                    <i class="fa fa-angle-left arrow"></i>
-                </a>
-                <ul class="nav-2-level collapse">
-                    <li>
-                        <a href="{{route('event.index')}}">
-                            <span class="fa fa-circle-o"></span>
-                            All lists
-                        </a>
-                    </li>
-                    <li>
-                        {{-- <a href="{{route('user.create')}}"> --}}
-                            <a href="{{route('event.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add new
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-            {{-- events end --}}
-
             {{-- Series --}}
             <li>
                 <a href="javascript:;">
@@ -101,6 +75,32 @@ $user_access = explode(',', $user->access_level);
             </li>
             {{-- Series end --}}
 
+            {{-- events --}}
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-calendar"></i>
+                    <span class="nav-label">Events</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('event.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All lists
+                        </a>
+                    </li>
+                    <li>
+                        {{-- <a href="{{route('user.create')}}"> --}}
+                            <a href="{{route('event.create')}}">
+                            <span class="fa fa-plus"></span>
+                            Add new
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            {{-- events end --}}
+
             {{-- blog --}}
             <li>
                 <a href="javascript:;">
@@ -119,7 +119,7 @@ $user_access = explode(',', $user->access_level);
             </li>
             {{-- blog end --}}
 
-            {{-- Report --}}
+            {{-- Users --}}
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-users"></i>
@@ -143,7 +143,25 @@ $user_access = explode(',', $user->access_level);
 
                 </ul>
             </li>
-            {{-- Report --}}
+            {{-- users end --}}
+
+            {{-- Booking --}}
+            <li>
+                <a href="javascript:;">
+                    <i class="sidebar-item-icon fa fa-list"></i>
+                    <span class="nav-label">Booking</span>
+                    <i class="fa fa-angle-left arrow"></i>
+                </a>
+                <ul class="nav-2-level collapse">
+                    <li>
+                        <a href="{{route('bookings.index')}}">
+                            <span class="fa fa-circle-o"></span>
+                            All lists
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {{-- Booking end --}}
 
         </ul>
     </div>

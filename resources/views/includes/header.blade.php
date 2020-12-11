@@ -17,7 +17,7 @@
                                         <div class="col-lg-2">
                                             <a href="#" class="link-title">Videos</a>
                                             <ul class="sub-menu-wrapp">
-                                                <li><a href="{{ route('video-list') }}">Featured Videos</a></li>
+                                                <li><a href="{{ route('featured-video-list') }}">Featured Videos</a></li>
                                                 <li><a href="{{ route('video-list') }}">Recent Videos</a></li>
                                             </ul>
                                         </div>
@@ -30,10 +30,10 @@
                                         <div class="col-lg-3">
                                             <a href="#" class="link-title">Past Events</a>
                                             <ul class="sub-menu-wrapp">
-                                                @forelse($pastEvents as $event)
-                                                    <li><a href="{{ route('event-detail', $event->slug) }}">{{ $event->title }}</a></li>
+                                                @forelse($allSeries as $series)
+                                                    <li><a href="{{ route('series-detail', $series->id) }}">{{ $series->name }}</a></li>
                                                 @empty 
-                                                    <li>No Event Found!</li> 
+                                                    <li>No Series Found!</li> 
                                                 @endforelse  
                                             </ul>
                                         </div>

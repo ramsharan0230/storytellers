@@ -87,9 +87,30 @@
                   <label>Select Guest</label>
                   <select class="form-control" name="guest_id"> 
                     <option value="">Select Guest...</option>
-                    @foreach ($data as $item)
+                    @foreach ($allGuests as $item)
                         <option value="{{ $item->id }}" {{ $item->id == $detail->guest_id ? 'selected' : '' }}>{{ $item->name }}</option>
                     @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Select Series</label>
+                  <select class="form-control" name="series_id"> 
+                    <option value="">Select Series...</option>
+                    @foreach ($allSeries as $item)
+                        <option value="{{ $item->id }}" {{ $item->id == $detail->guest_id ? 'selected' : '' }}>{{ $item->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Change Status</label>
+                  <select class="form-control" name="status"> 
+                    <option value="">Select Status...</option>
+                    <option value="upcoming" {{ $detail->status == "upcoming" ? 'selected' : '' }}>Upcoming</option>
+                    <option value="past" {{ $detail->status == "past" ? 'selected' : '' }} >Past</option>
+                    <option value="active" {{ $detail->status == "active" ? 'selected' : '' }} >Active</option>
+                    <option value="inActive" {{ $detail->status == "inActive" ? 'selected' : '' }} >inActive</option>
                   </select>
                 </div>
 
@@ -97,8 +118,8 @@
                   <label for="datetimepicker">Date Picker</label>
                   <div id="datetimepicker" class="input-append date" >
                     <input type="text" name="datetime" data-format="MM-dd-yyyy HH:mm:ss" value="{{ $detail->datetime }}">
-                    <span class="add-on">
-                      <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                    <span class="add-on" style="display: inline-block !important">
+                      <button class="btn btn-warning btn-sm" style="margin-top:-2px">Select Date</button>
                     </span>
                   </div>
                 </div>

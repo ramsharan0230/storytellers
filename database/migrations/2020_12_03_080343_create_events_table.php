@@ -17,6 +17,8 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('guest_id')->unsigned();
             $table->foreign('guest_id')->references('id')->on('guests');
+            $table->unsignedBigInteger('series_id')->unsigned();
+            $table->foreign('series_id')->references('id')->on('guests');
             $table->string('title');
             $table->string('datetime', 50);
             $table->string('video_link')->nullable();

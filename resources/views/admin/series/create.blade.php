@@ -81,16 +81,6 @@
                               placeholder="Enter series name">
                           </div>
           
-                          <div class="form-group">
-                            <label>Select Event</label>
-                            <select class="form-control" name="event_id"> 
-                              <option value="">Select Guest...</option>
-                              @foreach ($data as $item)
-                                  <option value="{{ $item->id }}">{{ $item->title }}</option>
-                              @endforeach
-                            </select>
-                          </div>
-          
                           <div class="check-list">
                             <label class="ui-checkbox ui-checkbox-primary">
                               <input name="publish" type="checkbox" checked>

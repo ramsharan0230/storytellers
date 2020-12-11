@@ -21,7 +21,8 @@ ul {margin: 0;padding: 0;list-style: none;}
 h1,h2,h3,h4,h5,h6 {margin: 0;color: #0F3F76;}
 p {line-height: 25px;font-size: 16px;font-weight: 400;color: #03182D;}
 
-img {max-width: 100%;height: auto;}
+img {max-width: 100%;height: auto; }
+.img-blog {max-width: 100%;height: auto; min-width: 40%; height: fit-content;}
 figure {background-position: center;background-repeat: no-repeat;background-size: cover;margin: 0;}
 
 

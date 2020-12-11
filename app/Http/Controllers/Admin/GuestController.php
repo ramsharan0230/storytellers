@@ -48,7 +48,7 @@ class GuestController extends Controller
 
         $formInput = $request->except(['photo']);
         $formInput['slug'] = SlugService::createSlug(Guest::class, 'slug', $formInput['name']);
-        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
+        $formInput['publish'] = $request->publish=='on' ? 0 : 1;
         $formInput['user_id'] = auth()->user()->id;
 
         if ($request->hasFile('photo')) {

@@ -45,9 +45,23 @@
                     <label>Select Guest</label>
                     <select class="form-control" name="guest_id"> 
                       <option value="">Select Guest...</option>
-                      @foreach ($data as $item)
+                      @forelse ($allGuests as $item)
                           <option value="{{ $item->id }}">{{ $item->name }}</option>
-                      @endforeach
+                      @empty
+                        <option value="">No Series Found!</option>
+                      @endforelse
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Select Series</label>
+                    <select class="form-control" name="series_id"> 
+                      <option value="">Select Series...</option>
+                      @forelse ($allSeries as $item)
+                          <option value="{{ $item->id }}">{{ $item->name }}</option>
+                      @empty
+                        <option value="">No Series Found!</option>
+                      @endforelse
                     </select>
                   </div>
 
@@ -56,7 +70,7 @@
                     <div id="datetimepicker" class="input-append date" >
                       <input type="text" name="datetime" data-format="MM-dd-yyyy HH:mm:ss">
                       <span class="add-on">
-                        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        <button class="btn btn-warning btn-sm" style="margin-top:-2px">Select Date</button>
                       </span>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Bookings')
+@section('title', 'Video List')
 @push('styles')
     <x-embed-styles />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/inner.css') }}">

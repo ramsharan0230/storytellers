@@ -50,7 +50,6 @@ class SeriesController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'event_id' => 'required|integer'
         ]);
 
         $formInput = $request->all();
@@ -78,8 +77,7 @@ class SeriesController extends Controller
     public function edit($id)
     {
         $detail = $this->series->find($id);
-        $events = $this->event->all();
-        return view('admin.series.edit', compact('detail', 'events'));
+        return view('admin.series.edit', compact('detail'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Series;
 use App\Models\Blog;
 use DB;
 
@@ -104,6 +105,15 @@ class EventController extends Controller
         $featuredVideo = Event::where('video_type', 'featured')->first();
         $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
         $pastEvents = $this->pastEvents;
-        return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'featuredVideo', 'blogs', 'pastEvents'));
+        $allSeries = Series::where('publish', 1)->get();
+        return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'allSeries', 'featuredVideo', 'blogs', 'pastEvents'));
+    }
+
+    public function seriesDetail($id){
+        $events = Event::where('series_id', $id)->with('guest')->get();
+        $allSeries = Series::where('publish', 1)->get();
+        $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
+        $allEvents = Event::where('status', 'upcoming')->get();
+        return view('series-detail', compact('events', 'allSeries', 'blogs', 'allEvents'));
     }
 }

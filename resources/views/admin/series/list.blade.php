@@ -22,7 +22,7 @@
         <div class="ibox-head">
             <div class="ibox-title">All Seies</div>
             <div>
-                {{-- <a class="btn btn-info btn-md" href="{{route('category.create')}}">Add category</a> --}}
+                <a class="btn btn-info btn-md" href="{{route('series.create')}}">Add Series</a>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
                     <tr>
                         <td>{{++$key}}</td>
                         <td>{{$data->name}}</td>
-                        <td>{{$data->event->title}}</td>
+                        <td>{{count($data->event)?$data->event->title:"No Event"}}</td>
                         <td>{{$data->publish == 1 ? 'Published' : 'Not Published'}}</td>
                         <td>
                             <a href="{{route('series.edit', $data->id)}}" class="btn btn-success btn-sm"><i
@@ -54,7 +54,7 @@
                             </a>
                             <form class="adjust-delete-button" action="{{route('series.destroy', $data->id)}}" method="post">
                                 @csrf
-                                @method('post')
+                                @method('delete')
                                 <button class="btn btn-danger btn-sm" type="submit" name="button" style="border-radius:50%" onclick="return confirm('Are you sure you want to delete this Gallery?')"><i class="fa fa-trash"></i></button>
                             </form>
                         </td>

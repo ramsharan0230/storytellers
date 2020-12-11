@@ -12,13 +12,21 @@
                     </div>
                     <div class="col-lg-5 col-md-5 col-12">
                         <div class="slider-content-side">
-                            <a href="#" class="slider-btn btn">
+                            <a href="{{ route('event-detail', $event->slug) }}" class="slider-btn btn">
                                 <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
                                 <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                             </a>
-                            <a href="#" class="slider-title-wrapper">
+                            <a href="{{ route('event-detail', $event->slug) }}" class="slider-title-wrapper">
                                 <span>{{ $event->guest->name }}, {{ $event->guest->designation }}, {{ $event->guest->organization }}</span>
-                                <h1>{{ $event->highlight_text }} </h1>
+                                
+                                <h1>
+                                    @if(strlen($event->highlight_text) > 60)
+                                    {{substr($event->highlight_text,0,60)}}
+                                    @else
+                                    {{$event->highlight_text}}
+                                    @endif
+                                    ....
+                                </h1>
                             </a>
                         </div>
                     </div>

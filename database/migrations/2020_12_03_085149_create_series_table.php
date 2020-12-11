@@ -16,9 +16,7 @@ class CreateSeriesTable extends Migration
         Schema::create('series', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('event_id')->unsigned();
             $table->boolean('publish', 0, 1)->default(1);
-            $table->foreign('event_id')->references('id')->on('events');
             $table->timestamps();
         });
     }

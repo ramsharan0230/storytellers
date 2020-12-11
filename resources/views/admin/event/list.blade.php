@@ -35,14 +35,15 @@
                     <tr>
                         <th>SN</th>
                         <th>Title</th>
-                        <th>Published At</th>
+                        <th>Guest</th>
+                        <th>Series</th>
                         <th>Video Link</th>
                         <th>Highlight Text</th>
                         <th>Banner Image</th>
-                        <th>Descriptions</th>
+                        <th>Slider</th>
+                        <th>Featured</th>
                         <th>Status</th>
                         <th>Options</th>
-                        <th>Slider</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,11 +52,25 @@
                     <tr>
                         <td>{{++$key}}</td>
                         <td>{{ucfirst($data->title)}}</td>
-                        <td>{{$data->datetime}}</td>
+                        <td>{{$data->guest->name}}</td>
+                        <td>{{ $data->series->name }}</td>
                         <td>{{$data->video_link}}</td>
                         <td>{{$data->highlight_text}}</td>
                         <td><img src="{{ asset('images/banners/'.$data->banner_image)}}" width="100px" height="50px" alt="" srcset=""></td>
-                        <td>{{$data->descriptions}}</td>
+                        <td>
+                            <div class="check-list">
+                            <label class="ui-checkbox ui-checkbox-primary">
+                              <input name="publish" type="checkbox" onclick="makeSlider({{ $data->id }})" {{ $data->slider == 1 ? 'checked': ''}}>
+                              <span class="input-span"></span>Make Slider</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="check-list">
+                            <label class="ui-checkbox ui-checkbox-primary">
+                              <input name="featured" type="checkbox" onclick="makeFeatured({{ $data->id }})" {{ $data->video_type == 'featured' ? 'checked': ''}}>
+                              <span class="input-span"></span>Make Featured</label>
+                            </div>
+                        </td>
                         <td>{{$data->status }}</td>
                         <td>
                             <a href="{{route('event.edit', $data->id)}}" class="btn btn-success btn-sm"><i
@@ -71,11 +86,6 @@
                                         class="fa fa-trash"></i></button>
                             </form>
                         </td>
-                        <td><div class="check-list">
-                            <label class="ui-checkbox ui-checkbox-primary">
-                              <input name="publish" type="checkbox" onclick="fire({{ $data->id }})" {{ $data->slider == 1 ? 'checked': ''}}>
-                              <span class="input-span"></span>Make Slider</label>
-                          </div></td>
                     </tr>
                     @endforeach
                     @else
@@ -109,12 +119,25 @@
         });
     })
 
-    function fire(id){
+    function makeSlider(id){
         var id = id;
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type:'POST',
             url:'/admin/event/make-slider',
+            data:{event_id: id, _token: _token},
+            success:function(response){
+                alert(response.message);
+            }
+        });
+    }
+
+    function makeFeatured(id){
+        var id = id;
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:'POST',
+            url:'/admin/event/make-featured',
             data:{event_id: id, _token: _token},
             success:function(response){
                 alert(response.message);

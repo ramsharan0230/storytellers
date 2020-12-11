@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Story Teller | {{ $event->title }}')
+@section('title', $event->title)
 @push('styles')
     <x-embed-styles />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/inner.css') }}">

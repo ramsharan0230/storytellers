@@ -21,7 +21,7 @@ class CreateGuestsTable extends Migration
             $table->text('description', 2500)->nullable();
             $table->string('organization')->nullable();
             $table->string('slug')->nullable();
-            $table->boolean('status', 0, 1)->default(0);
+            $table->boolean('publish', 0, 1)->default(0);
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -9,6 +9,7 @@ use Image;
 use DB;
 use App\Repositories\Event\EventRepository;
 use App\Repositories\Guest\GuestRepository;
+use App\Repositories\Series\SeriesRepository;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Carbon\Carbon;
 
@@ -17,11 +18,12 @@ class EventController extends Controller
 {
     protected $model = null;
 
-    public function __construct(EventRepository $model, GuestRepository $guest)
+    public function __construct(EventRepository $model, GuestRepository $guest, SeriesRepository $series)
     {
         $this->model = $model;
         $this->event = $model;
         $this->guest = $guest;
+        $this->series = $series;
     }
 
     /**
@@ -42,8 +44,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        $data = $this->guest->where('status', 1)->get();
-        return view('admin.event.create', compact('data'));
+        $allGuests = $this->guest->where('publish', 1)->get();
+        $allSeries = $this->series->where('publish', 1)->get();
+        return view('admin.event.create', compact('allGuests', 'allSeries'));
     }
 
     /**
@@ -56,6 +59,7 @@ class EventController extends Controller
     {
         $request->validate([
             'guest_id' => 'required|integer',
+            'series_id' => 'required|integer',
             'title' => 'required|max:199',
             'datetime' => 'required',
             'video_link' => 'required|max:199',
@@ -98,8 +102,10 @@ class EventController extends Controller
     {
         // return abort(404);
         $detail = $this->model->findOrFail($id);
-        $data = $this->guest->get();
-        return view('admin.event.edit', compact('detail', 'data'));
+
+        $allGuests = $this->guest->where('publish', 1)->get();
+        $allSeries = $this->series->where('publish', 1)->get();
+        return view('admin.event.edit', compact('detail', 'allGuests', 'allSeries'));
     }
 
     /**
@@ -113,19 +119,20 @@ class EventController extends Controller
     {
         $request->validate([
             'guest_id' => 'required|integer',
+            'series_id' => 'required|integer',
             'title' => 'required|max:199',
             'datetime' => 'required',
             'video_link' => 'required|max:199',
             'highlight_text' => 'max:2500',
             'banner_image' => 'mimes:jpg,jpeg,png,gif|max:2048',
             'descriptions' => 'max:2500',
+            'status' => 'required',
         ]);
 
         $oldRecord = $this->model->findOrFail($id);
 
-        $formInput = $request->except(['slug', 'publish', 'banner_image']);
+        $formInput = $request->except(['slug', 'banner_image']);
         $formInput['slug'] = SlugService::createSlug(Event::class, 'slug', $formInput['title']);
-        $formInput['status'] = is_null($request->publish) ? 0 : 1;
 
         if ($request->hasFile('banner_image')) {
             if ($oldRecord->banner_image) {
@@ -194,4 +201,23 @@ class EventController extends Controller
 
         return response(['message'=>$message, 'status'=>200]);
     }
+
+    public function makeFeatured(Request $request){
+        
+        $request->validate([
+            'event_id' => 'required|integer'
+        ]);
+        $event = DB::table('events')->where('id', $request->event_id)->first();
+        if($event->video_type == 'past'){
+            DB::table('events')->where('id', $request->event_id)->update(array('video_type' => 'featured'));
+            $message = "Event has been updated to Featured";
+        }
+        else{
+            DB::table('events')->where('id', $request->event_id)->update(array('video_type' => 'past'));
+            $message = "Event has been removed from Past";
+        }
+
+        return response(['message'=>$message, 'status'=>200]);
+    }
+    
 }

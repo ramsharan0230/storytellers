@@ -26,8 +26,6 @@
     @endif
     <form method="post" action="{{route('blogs.store')}}" enctype="multipart/form-data">
         @csrf
-
-
         <div class="row">
             <div class="col-md-12">
                 <div class="ibox">
@@ -102,6 +100,6 @@
 @endsection
 
 @push('scripts')
-@include('admin.layouts._partials.ckeditorsetting')
+{{-- @include('admin.layouts._partials.ckeditorsetting') --}}
 @include('admin.layouts._partials.imagepreview')
 @endpush

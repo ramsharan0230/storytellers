@@ -35,6 +35,7 @@
                     @endforelse
                 </div>
             </div>
+            {{ $blogs->links() }}
         </div>
     </div>
 </section>

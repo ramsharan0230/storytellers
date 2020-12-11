@@ -11,7 +11,7 @@ use App\Models\Series;
 class BlogController extends Controller
 {
     public function blogs(){
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::latest()->simplePaginate(5);
         $allSeries = Series::where('publish', 1)->get();
         $allEvents = Event::where('status', 'upcoming')->get();
         return view('blogs', compact('blogs', 'allSeries', 'allEvents'));

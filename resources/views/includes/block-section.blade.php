@@ -11,7 +11,7 @@
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[0]->title }}</h2>
-                            <p>{{ strip_tags($blogs[0]->description) }}</p>
+                            <p>{{ html_entity_decode($blogs[0]->description) }}</p>
                         </div>
                     </div>
                 </a>
@@ -33,7 +33,7 @@
                         <div class="about-title-side">
                             <h2>{{ $blogs[2]->title }}</h2>
                             <img src="{{ asset('images/banners').'/'.$blogs[2]->image }}" class="block-right-image" alt="image">
-                            <p>{{ strip_tags($blogs[2]->description) }}</p>
+                            <p>{{ html_entity_decode($blogs[2]->description) }}</p>
                         </div>
                     </div>
                     <div href="#" class="slider-btn block-btn btn " tabindex="0">
@@ -69,7 +69,7 @@
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[4]->title }}</h2>
-                            <p>{{ strip_tags($blogs[4]->description) }}</p>
+                            <p>{{ html_entity_decode(htmlentities($blogs[4]->description)) }}</p>
                         </div>
                     </div>
                 </a>

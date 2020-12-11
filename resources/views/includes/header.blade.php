@@ -49,7 +49,7 @@
                                             <a href="{{ route('blogs') }}" class="link-title">Blogs</a>
                                             <ul class="sub-menu-wrapp">
                                                 @forelse ($blogs as $blog)
-                                                    <li><a href="{{ route('blogs') }}">{{ $blog->title }}</a></li>
+                                                    <li><a href="{{ route('blog-detail', $blog->slug) }}">{{ $blog->title }}</a></li>
                                                 @empty
                                                     <li>No Blog Found!</li>
                                                 @endforelse

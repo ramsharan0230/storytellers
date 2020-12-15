@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Event\EventRepository;
 use App\Repositories\Booking\BookingRepository;
+use App\Models\Booking;
 
 class BookingController extends Controller
 {
@@ -39,5 +40,21 @@ class BookingController extends Controller
         }
         $detail->update($formData);
         return redirect()->route('admin.allBookings')->with('message', 'Booking updated successfully');
+    }
+
+    public function conform(Request $request, $id){
+        $booking = Booking::where('id', $request->id)->first();
+        Booking::where('id', $booking->id)->update(array('isBooked' => 1));
+        $message = "Event has been updated to Conformed";
+        
+        return redirect()->route('bookings.index')->with('message', 'Booking has been conformed successfully');
+    }
+
+    public function deny(Request $request, $id){
+        $booking = Booking::where('id', $request->id)->first();
+        Booking::where('id', $booking->id)->update(array('isBooked' => 0));
+        $message = "Event has been updated to denied";
+        
+        return redirect()->route('bookings.index')->with('message', 'Booking has been denied successfully');
     }
 }

@@ -14,13 +14,13 @@
 @section('content')
 
 <div class="page-heading">
-    <h1 class="page-title">Seies</h1>
+    <h1 class="page-title">Series</h1>
     @include('admin.layouts._partials.messages.info')
 </div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">All Seies</div>
+            <div class="ibox-title">All Series</div>
             <div>
                 <a class="btn btn-info btn-md" href="{{route('series.create')}}">Add Series</a>
             </div>
@@ -34,7 +34,6 @@
                     <tr>
                         <th>SN</th>
                         <th>Name</th>
-                        <td>Event</td>
                         <th>Status</th>
                         <th>Options</th>
                     </tr>
@@ -46,7 +45,6 @@
                     <tr>
                         <td>{{++$key}}</td>
                         <td>{{$data->name}}</td>
-                        <td>{{count($data->event)?$data->event->title:"No Event"}}</td>
                         <td>{{$data->publish == 1 ? 'Published' : 'Not Published'}}</td>
                         <td>
                             <a href="{{route('series.edit', $data->id)}}" class="btn btn-success btn-sm"><i

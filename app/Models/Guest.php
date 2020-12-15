@@ -11,7 +11,7 @@ class Guest extends Model
 {
     use Sluggable, HasFactory;
     protected $table = 'guests';
-    protected $fillable = ['name', 'photo', 'designation', 'organization', 'description', 'slug', 'user_id', 'status'];
+    protected $fillable = ['name', 'photo', 'designation', 'organization', 'description', 'slug', 'user_id', 'publish'];
 
     public function sluggable()
     {

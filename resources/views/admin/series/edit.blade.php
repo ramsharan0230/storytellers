@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page_title', 'Edit Guest')
+@section('page_title', 'Edit Series')
 @push('styles')
 <style media="screen">
   .img-thumbnail:hover {
@@ -51,7 +51,7 @@
     <div class="col-md-12">
       <div class="ibox">
         <div class="ibox-head">
-          <div class="ibox-title">Edit Guest</div>
+          <div class="ibox-title">Edit Series</div>
 
           <div class="ibox-tools">
           </div>
@@ -75,15 +75,6 @@
                   <label>Name</label>
                   <input type="text" class="form-control" name="name" value="{{$detail->name}}"
                     placeholder="Enter full name">
-                </div>
-
-                <div class="form-group">
-                  <label>Event</label>
-                  <select name="event_id" class="form-control">
-                    @foreach ($events as $item)
-                      <option value="{{ $item->id }}" {{ $item->id == $detail->event_id ? 'selected' : '' }}>{{ $item->title }}</option>
-                    @endforeach
-                  </select>
                 </div>
 
                 <div class="check-list">

@@ -15,6 +15,7 @@
                 <iframe width="400px" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="row">
+                <?php dd($event) ?>
                 <div class="col-lg-8 col-md-8 col-12">
                     <div class="innerpage-tab-section">
                         <ul class="nav nav-tabs featured-tabs innerpage-tabs">

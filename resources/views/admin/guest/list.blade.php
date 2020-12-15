@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page_title', 'All categories')
+@section('page_title', 'All Guests')
 
 @push('styles')
 <link href="{{asset('/assets/admin/vendors/DataTables/datatables.min.css')}}" rel="stylesheet" />
@@ -52,7 +52,7 @@
                         <td>{{$data->designation}}</td>
                         <td>{{$data->organization}}</td>
                         <td><img src="{{ asset('images/main/'.$data->photo)}}" alt="" width="100px" height="50px"></td>
-                        <td>{{$data->status == 1 ? 'Published' : 'Not Published'}}</td>
+                        <td>{{$data->publish == 1 ? 'Published' : 'Not Published'}}</td>
                         <td>
                             <a href="{{route('guest.edit', $data->id)}}" class="btn btn-success btn-sm"><i
                                     class="fa fa-edit"></i>

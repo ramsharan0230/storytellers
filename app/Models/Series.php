@@ -9,9 +9,9 @@ class Series extends Model
 {
     use HasFactory;
     protected $table = 'series';
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'publish'];
 
-    public function event(){
+    public function events(){
         return $this->hasMany('App\Models\Event');
     }
 

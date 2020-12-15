@@ -51,8 +51,9 @@ class SeriesController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-
+        
         $formInput = $request->all();
+        $formInput['publish'] = $request->publish=="on"?1:0;
         $this->model->create($formInput);
         return redirect()->route('series.index')->with('message', 'Series Has Been Created Successfuly.');
     }
@@ -77,6 +78,7 @@ class SeriesController extends Controller
     public function edit($id)
     {
         $detail = $this->series->find($id);
+        
         return view('admin.series.edit', compact('detail'));
     }
 

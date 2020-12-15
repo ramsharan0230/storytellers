@@ -30,6 +30,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
+    Route::get('setting', 'SettingController@index')->name('setting');
+    Route::put('setting/save/{id}', 'SettingController@update')->name('setting.update');
+
     Route::resource('users', 'UserController');
 
     Route::get('/events', 'EventController@index')->name('event.index');
@@ -40,6 +43,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::put('/event/update/{guest}', 'EventController@update')->name('event.update');
     Route::post('/event/make-slider', 'EventController@makeSlider');
     Route::post('/event/make-featured', 'EventController@makeFeatured');
+    Route::get('event/gallery', 'EventController@eventGalleryIndex')->name('event.gallery');
+    Route::get('event/gallery/create', 'EventController@createEventGallery')->name('event.gallery.create');
+    Route::post('event/gallery/store', 'EventController@eventGallery')->name('event.gallery.store');
+    Route::get('event/gallery/{id}/edit', 'EventController@eventGallery')->name('event.gallery.edit');
+    Route::post('event/gallery/{id}/delete', 'EventController@deleteEventGallery')->name('event.gallery.delete');
+    Route::get('event/gallery/{id}/show', 'EventController@showEventGallery')->name('event.gallery.show');
+    Route::post('event/gallery/changeStatus', 'EventController@changeGalleryStatus')->name('event.gallery.changeStatus');
+    
 
     Route::get('/guests', 'GuestController@index')->name('guest.index');
     Route::get('/guest/create', 'GuestController@create')->name('guest.create');
@@ -52,6 +63,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::resource('blogs', 'BlogController');
     Route::resource('user', 'UserController');
     Route::resource('bookings', 'BookingController');
+    Route::post('/booking/conform/{id}', 'BookingController@conform')->name('booking.conform');
+    Route::post('/booking/deny/{id}', 'BookingController@deny')->name('booking.deny');
+
+    Route::get('/pages/about', 'PagesController@about')->name('pages.about');
+    Route::get('/pages/about/create', 'PagesController@createAbout')->name('pages.about.create');
+    Route::get('/pages/about/edit/{id}', 'PagesController@editAbout')->name('pages.about.edit');
+    Route::post('/pages/about/store', 'PagesController@storeAbout')->name('pages.about.store');
+    Route::post('/pages/about/{id}/update', 'PagesController@updateAbout')->name('pages.about.update');
+
+    Route::get('/pages/contact', 'PagesController@contact')->name('pages.contact');
+    Route::get('/pages/contact/create', 'PagesController@createContact')->name('pages.contact.create');
+    Route::post('/pages/contact/store', 'PagesController@storeContact')->name('pages.contact.store');
+    Route::get('/pages/contact/edit/{id}', 'PagesController@editContact')->name('pages.contact.edit');
+    Route::post('/pages/contact/{id}/update', 'PagesController@updateContact')->name('pages.contact.update');
+
+    Route::get('/page/team', 'PagesController@team')->name('page.team');
+    Route::post('/pages/store', 'DashboardController@pagestore')->name('pages.store');
 });
 
 Route::group(['namespace' => 'Front'], function () {

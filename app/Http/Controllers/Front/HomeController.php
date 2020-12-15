@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Series;
 use App\Models\Blog;
+use App\Models\About;
 
 class HomeController extends Controller
 {
@@ -41,7 +42,8 @@ class HomeController extends Controller
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
-        return view('about-us', compact(['allEvents', 'allSeries', 'blogs', 'pastEvents']));
+        $about = About::first();
+        return view('about-us', compact(['allEvents', 'allSeries', 'blogs', 'pastEvents', 'about']));
     }
 
     public function contact(){

@@ -23,29 +23,49 @@ $user_access = explode(',', $user->access_level);
             </li>
             {{-- Dashboard --}}
 
-            {{-- Guests --}}
+            {{-- Site Settings --}}
+            <li>
+                <a href="{{ route('setting') }}"><i class="sidebar-item-icon fa fa-globe"></i>
+                    <span class="nav-label">Site Settings</span></a>
+            </li>
+            {{-- Site Settings end --}}
+
+            {{-- page --}}
             <li>
                 <a href="javascript:;">
-                    <i class="sidebar-item-icon fa fa-sitemap"></i>
-                    <span class="nav-label">Guests</span>
+                    <i class="sidebar-item-icon fa fa-list"></i>
+                    <span class="nav-label">Pages</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">
                     <li>
-                        <a href="{{route('guest.index')}}">
+                        <a href="{{route('pages.about')}}">
                             <span class="fa fa-circle-o"></span>
-                            All lists
+                            About
                         </a>
                     </li>
                     <li>
                         {{-- <a href="{{route('user.create')}}"> --}}
-                            <a href="{{route('guest.create')}}">
-                            <span class="fa fa-plus"></span>
-                            Add new
+                            <a href="{{route('pages.contact')}}">
+                                <span class="fa fa-circle-o"></span>
+                            Contact
                         </a>
                     </li>
-
+                    <li>
+                        {{-- <a href="{{route('user.create')}}"> --}}
+                            <a href="{{route('page.team')}}">
+                                <span class="fa fa-circle-o"></span>
+                            Team
+                        </a>
+                    </li>
                 </ul>
+            </li>
+            {{-- page end --}}
+
+            {{-- Guests --}}
+            <li>
+                <a href="{{route('guest.index')}}"><i class="sidebar-item-icon fa fa-globe"></i>
+                    <span class="nav-label">Guests</span></a>
             </li>
             {{-- Guests end --}}
 
@@ -100,6 +120,13 @@ $user_access = explode(',', $user->access_level);
                 </ul>
             </li>
             {{-- events end --}}
+
+            {{-- Event Gallery --}}
+            <li>
+                <a href="{{ route('event.gallery') }}"><i class="sidebar-item-icon fa fa-globe"></i>
+                    <span class="nav-label">Gallery</span></a>
+            </li>
+            {{-- Event Gallery end --}}
 
             {{-- blog --}}
             <li>

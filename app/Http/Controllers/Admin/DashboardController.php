@@ -7,17 +7,21 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\Event\EventRepository;
 use App\Repositories\Guest\GuestRepository;
 use App\Repositories\Series\SeriesRepository;
+use App\Repositories\Booking\BookingRepository;
+use App\Repositories\Blog\BlogRepository;
 use Illuminate\Http\Request;
 use DB;
 
 class DashboardController extends Controller
 {
-    public function __construct(UserRepository $user, EventRepository $event, GuestRepository $guest, SeriesRepository $series)
+    public function __construct(BlogRepository $blog, BookingRepository $booking, UserRepository $user, EventRepository $event, GuestRepository $guest, SeriesRepository $series)
     {
         $this->user = $user;
         $this->event = $event;
         $this->guest = $guest;
         $this->series = $series;
+        $this->booking = $booking;
+        $this->blog = $blog;
     }
 
     public function index()
@@ -26,11 +30,13 @@ class DashboardController extends Controller
         $total_events = $this->event->all()->count(); 
         $total_guests = $this->guest->all()->count(); 
         $total_series = $this->series->all()->count();
+        $total_bookings = $this->booking->all()->count();
+        $total_blogs = $this->blog->all()->count();
+
         $dashboard_allevents = DB::table('events')->orderBy('created_at', 'DESC')->limit(5)->get();
         $dashboard_allguests = DB::table('guests')->orderBy('created_at', 'DESC')->limit(5)->get();
         $dashboard_allusers = DB::table('users')->orderBy('created_at', 'DESC')->limit(5)->get();
-
-        return view('admin.dashboard', compact('total_users', 'total_events', 'total_guests', 'total_series', 'dashboard_allevents', 'dashboard_allguests', 'dashboard_allusers'));
+        return view('admin.dashboard', compact('total_users', 'total_bookings', 'total_blogs', 'total_events', 'total_guests', 'total_series', 'dashboard_allevents', 'dashboard_allguests', 'dashboard_allusers'));
     }
 
     public function update(Request $request, $id)

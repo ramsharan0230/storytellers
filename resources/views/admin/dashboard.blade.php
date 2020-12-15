@@ -33,7 +33,7 @@
             </a>
         </div>
 
-        {{-- Exhibitor --}}
+        {{-- guest --}}
         <div class="col-lg-3 col-md-6">
             {{-- <a href="{{route('exhibitor.index')}}" class="text-white"> --}}
                 <a href="#" class="text-white">
@@ -83,6 +83,40 @@
                 </div>
             </a>
         </div>
+
+        {{-- bookings --}}
+        <div class="col-lg-3 col-md-6">
+            {{-- <a href="{{route('exhibitor.index')}}" class="text-white"> --}}
+                <a href="#" class="text-white">
+                <div class="ibox bg-secondary color-white widget-stat">
+                    <div class="ibox-body">
+                        <h2 class="m-b-5 font-strong"> {{ $total_bookings }}</h2>
+                        <div class="m-b-5 text-uppercase">Total Bookings</div>
+                        <i class="fa fa-table widget-stat-icon"></i>
+                        <div>
+                            <a href="{{ route('bookings.index') }}" style="color:white"><small>View More</small><i class="fa fa-arrow-circle-o-right m-l-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {{-- blogs --}}
+        <div class="col-lg-3 col-md-6">
+            {{-- <a href="{{route('exhibitor.index')}}" class="text-white"> --}}
+                <a href="#" class="text-white">
+                <div class="ibox bg-primary color-white widget-stat">
+                    <div class="ibox-body">
+                        <h2 class="m-b-5 font-strong"> {{ $total_blogs }}</h2>
+                        <div class="m-b-5 text-uppercase">Total Blogs</div>
+                        <i class="fa fa-table widget-stat-icon"></i>
+                        <div>
+                            <a href="{{ route('blogs.index') }}" style="color:white"><small>View More</small><i class="fa fa-arrow-circle-o-right m-l-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
     <div class="row">
         <div class="col-lg-5">
@@ -106,7 +140,7 @@
                                 <td>{{++$key}}</td>
                                 <td>{{$event->title}}</td>
                                 <td><img width="100px" height="50px" src="{{ asset('images/banners/'.$event->banner_image) }}" alt="" srcset=""></td>
-                                <td>{{$event->datetime}}</td>
+                                <td>{{$event->time}}{{$event->date}}</td>
                             </tr>
                             @endforeach
                         </tbody>

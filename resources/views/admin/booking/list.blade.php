@@ -44,19 +44,33 @@
                         <td>{{++$key}}</td>
                         <td>{{$data->name}}</td>
                         <td>{{$data->email}}</td>
-                        <td>{{$data->event }}</td>
-                        <td>{{$data->publish}}</td>
+                        <td>{{$data->phone}}</td>
+                        <td>{{$data->event->title }}</td>
+                        <td>
+                            @if($data->isBooked==1)
+                                <button class="btn btn-sm btn-success">Booked</button>
+                            @else
+                                <button class="btn btn-sm btn-warning">Not Booked</button>
+                            @endif
+                        </td>
                         <td>
                             <a href="{{route('bookings.edit', $data->id)}}" class="btn btn-success btn-sm mb-2"><i
                                     class="fa fa-edit"></i>
                             </a>
                             @if($data->isBooked == 0)
-                            <form method="post" action="{{route('bookings.update', $data->id)}}"
-                                enctype="multipart/form-data">
+                            <form method="post" action="{{route('booking.conform', $data->id)}}">
                                 @csrf
-                                @method('put')
+                                @method('post')
                                 <input name="isBooked" type="hidden" value="1">
                                 <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Confirm Booking
+                                </button>
+                            </form>
+                            @else
+                            <form method="post" action="{{route('booking.deny', $data->id)}}">
+                                @csrf
+                                @method('post')
+                                <input name="isBooked" type="hidden" value="1">
+                                <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Deny Booking
                                 </button>
                             </form>
                             @endif

@@ -60,9 +60,9 @@
 
         <header class="header">
             <div class="page-brand">
-                <a class="link" href="#">
+                <a class="link" href="{{ route('dashboard') }}">
                     <span class="brand">
-                        {{-- {{ $dashboard_composer->site_name }} --}} Story Teller
+                        {{-- {{ $dashboard_composer->site_name }} --}} StoryTeller
                     </span>
                     <span class="brand-mini">StoryTeller</span>
                 </a>

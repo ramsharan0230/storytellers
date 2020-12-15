@@ -2,7 +2,8 @@
 @section('page_title', 'Add Event')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap-datetimepicker.min.css') }}">
-    
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
 @endpush
 @section('content')
 
@@ -42,20 +43,21 @@
                   </div>
 
                   <div class="form-group">
-                    <label>Select Guest</label>
-                    <select class="form-control" name="guest_id"> 
-                      <option value="">Select Guest...</option>
-                      @forelse ($allGuests as $item)
-                          <option value="{{ $item->id }}">{{ $item->name }}</option>
-                      @empty
-                        <option value="">No Series Found!</option>
-                      @endforelse
+                    <label value="">Select Guest...</label>
+                    <select class="selectpicker form-control" name="guest_id" data-show-subtext="true" data-live-search="true">
+                        <option value="">Select Guest...</option>
+                        @forelse ($allGuests as $item)
+                            <option value="{{ $item->id }}" data-subtext="{{ $item->organization }}">{{ $item->name }}</option>
+                        @empty
+                          <option value="">No Series Found!</option>
+                        @endforelse
                     </select>
+                    <br>
                   </div>
 
                   <div class="form-group">
                     <label>Select Series</label>
-                    <select class="form-control" name="series_id"> 
+                    <select class="selectpicker form-control" name="series_id"  data-show-subtext="true" data-live-search="true" name="series_id">
                       <option value="">Select Series...</option>
                       @forelse ($allSeries as $item)
                           <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -63,15 +65,38 @@
                         <option value="">No Series Found!</option>
                       @endforelse
                     </select>
+                    <br>
                   </div>
 
                   <div class="form-group">
-                    <label for="datetimepicker">Date Picker</label>
-                    <div id="datetimepicker" class="input-append date" >
-                      <input type="text" name="datetime" data-format="MM-dd-yyyy HH:mm:ss">
-                      <span class="add-on">
-                        <button class="btn btn-warning btn-sm" style="margin-top:-2px">Select Date</button>
-                      </span>
+                    <label for="first_patagraph">First Paragraph</label>
+                    <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('descriptions')}}"> </textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="second_patagraph">Second Paragraph</label>
+                    <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('descriptions')}}"> </textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="highlight_text">Highlight Text</label>
+                    <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}"> </textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-7">
+                        <div class="form-group">
+                          <label>Date</label>
+                          <input class="form-control" type="date" name="date"  value="{{old('date')}}">
+                        </div>
+                      </div>
+                      <div class="col-sm-5">
+                        <div class="form-group">
+                          <label>Time</label>
+                          <input class="form-control" type="time" name="time" value="{{old('time')}}">
+                        </div>
+                      </div>
                     </div>
                   </div>
   
@@ -82,13 +107,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="highlight_text">Highlight Text</label>
-                    <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}"> </textarea>
-                  </div>
-  
-                  <div class="form-group">
-                    <label>Descriptions</label>
-                    <textarea name="descriptions" id="" cols="30" rows="10" class="form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> </textarea>
+                    <label for="descriptions">Descriptions</label>
+                    <textarea name="descriptions" id="descriptions" cols="30" rows="10" class="form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> </textarea>
                   </div>
   
                   <div class="check-list">
@@ -107,11 +127,11 @@
                           <div id="image-holder">
                           </div>
                         </div>
-                      </div>
+                    </div> 
                 </div>
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" onclick="createEvent()" type="submit">Submit</button>
               </div>
             </form>
           </div>
@@ -123,66 +143,8 @@
 @endsection
 
 @push('scripts')
-<script type="text/javascript"
-src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script>
-<script type="text/javascript"
-src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-</script>
-<script type="text/javascript"
-src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-</script>
-<script type="text/javascript">
- $('#datetimepicker').datetimepicker({
-   format: 'dd/MM/yyyy hh:mm:ss',
-   language: 'en'
- });
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"> </script>
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
 @endpush
-
-{{--
-<div class="form-group">
-  <label>Image</label>
-  <input id="fileUpload1" class="form-control" value="{{old('image')}}" name="image" type="file">
-<div id="wrapper" class="mt-2">
-  <div id="image-holder1">
-  </div>
-</div>
-</div>
-
-<div class="form-group">
-  <label>Logo</label>
-  <input id="fileUpload2" class="form-control" value="{{old('logo')}}" name="logo" type="file">
-  <div id="wrapper" class="mt-2">
-    <div id="image-holder2">
-    </div>
-  </div>
-</div> --}}
-
-{{-- <script>
-  $(document).ready(function() {
-        fileUpload('#fileUpload1', '#image-holder1');
-        fileUpload('#fileUpload2', '#image-holder2');
-    });
-    function fileUpload($selector, $imageHolder) {
-        $($selector).on('change', function() {
-            if (typeof(FileReader) != "undefined") {
-                var image_holder = $($imageHolder);
-                // $("#image-holder").siblings().remove();
-                $($imageHolder).children().remove();
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $("<img />", {
-                        "src": e.target.result,
-                        "class": "thumb-image",
-                        "width": '50%'
-                    }).appendTo(image_holder);
-                }
-                image_holder.show();
-                reader.readAsDataURL($(this)[0].files[0]);
-            } else {
-                alert("This browser does not support FileReader.");
-            }
-        });
-    }
-</script> --}}

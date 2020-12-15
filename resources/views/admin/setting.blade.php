@@ -150,18 +150,7 @@
                                 <input class="form-control" type="text" value="{{$detail->chat_messenger}}" name="chat_messenger"
                                     placeholder="Enter messenger link">
                             </div>
-                            <div class="col-md-6 form-group">
-                                <label>Redirect to</label>
-                                <select name="redirect_to" class="form-control">
-                                    <option value>-- select one --</option>
-                                    @foreach($dashboard_exhibitors as $exhibitor)
-                                    <option value="{{$exhibitor->slug}}"
-                                        {{$exhibitor->slug == $detail->redirect_to ? 'selected' : ''}}>
-                                        {{$exhibitor->title}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            
                             
                             <div class="form-group col-md-6">
                                 <label>banner image</label>

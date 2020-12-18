@@ -26,4 +26,9 @@ class Guest extends Model
     {
         return $this->hasMany('App\Models\Event');
     }
+
+    public function upcomingevents()
+    {
+        return $this->hasMany('App\Models\UpcomingEvent');
+    }
 }

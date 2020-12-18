@@ -15,7 +15,6 @@
                 <iframe width="400px" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="row">
-                <?php dd($event) ?>
                 <div class="col-lg-8 col-md-8 col-12">
                     <div class="innerpage-tab-section">
                         <ul class="nav nav-tabs featured-tabs innerpage-tabs">
@@ -27,8 +26,8 @@
                             <div id="detail" class="tab-pane fade in active">
                                 <div class="innerpage-detail">
                                     <span>{{ $event->guest->name }}, {{ $event->guest->designation }}, {{ $event->guest->organization }}</span>
-                                    <h2>{{ $event->highlight_text }}</h2>
-                                    <p>{{ $event->guest->description }}</p>
+                                    <h2>{{ $event->title }}</h2>
+                                    <p>{{ $event->first_paragraph }}</p>
                                 </div>
                                 <div class="innerother-detail">
                                     <h3>{{ $event->guest->feature_text }}</h3>
@@ -85,6 +84,7 @@
                 </div>
             </div>
         </div>
+        @if($featuredVideo !==null)
         <div class="inner-video-section">
             <div class="container">
                 <div class="about-title-side innerpage-title">
@@ -110,6 +110,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="inner-block-section all-sec-padding">
             <div class="container">

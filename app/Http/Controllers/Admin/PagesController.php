@@ -24,8 +24,8 @@ class PagesController extends Controller
             'about_logo' => 'mimes:jpg,jpeg,png,gif|max:2048',
             'highlight_text' => 'required|max:300',
             'first_paragraph' => 'required|max:1000',
-            'second_paragraph' => 'required|max:1000',
-            'description' => 'required|max:5000',
+            'second_paragraph' => 'max:1000',
+            'description' => 'max:5000',
             'image' => 'mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
@@ -48,24 +48,32 @@ class PagesController extends Controller
         return view('admin.pages.about.edit', compact('about'));
     }
 
-    public function updateAbout(Request $request, $id){
-        
+    public function updateAbout(Request $request, $id)
+    {
         $request->validate([
             'title' => 'required|max:200',
             'about_logo' => 'mimes:jpg,jpeg,png,gif|max:2048',
             'highlight_text' => 'required|max:300',
             'first_paragraph' => 'required|max:1000',
-            'second_paragraph' => 'required|max:1000',
-            'description' => 'required|max:5000'
+            'second_paragraph' => 'max:1000',
+            'description' => 'max:5000',
+            'image' => 'mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $formInput = $request->except(['published']);
+        $formInput = $request->except(['publish']);
         $formInput['publish'] = $request->publish=='on' ? 1 : 0;
+        $oldRecord = About::find($id)->findOrFail($id)->first();
         
         if ($request->hasFile('image')) {
+            if ($oldRecord->image) {
+                $this->unlinkImage($oldRecord->image);
+            }
             $formInput['image'] = $this->imageProcessing($request->image, 750, 562, 'yes');
         }
         if ($request->hasFile('about_logo')) {
+            if ($oldRecord->about_logo) {
+                $this->unlinkImage($oldRecord->about_logo);
+            }
             $formInput['about_logo'] = $this->imageProcessing($request->about_logo, 750, 562, 'yes');
         }
 

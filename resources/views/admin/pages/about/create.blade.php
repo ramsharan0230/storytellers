@@ -46,8 +46,8 @@
         
                                 <div class="form-group">
                                     <label>Highlight Text</label>
-                                    <input class="form-control" name="highlight_text" value="{{old('highlight_text')}}" type="text"
-                                        placeholder="Enter Highlight Text">
+                                    <textarea name="highlight_text" class="form-control" rows="8"
+                                        cols="80">{{old('highlight_text')}}</textarea>
                                 </div>
         
                                 <div class="form-group">

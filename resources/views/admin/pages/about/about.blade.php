@@ -40,10 +40,10 @@
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Logo</th>
                         <th>Highlight Text</th>
                         <th>First Paragraph</th>
                         <th>Second Paragraph</th>
-                        <th>Description</th>
                         <th>Image</th>
                         <th>Status</th>
                         <th>Options</th>
@@ -57,7 +57,6 @@
                         <td>{{$data->highlight_text}}</td>
                         <td>{{ $data->first_paragraph }}</td>
                         <td>{{ $data->second_paragraph }}</td>
-                        <td>{{ $data->description }}</td>
                         <td><img src="{{ asset('images/about').'/'.$data->image }}" alt="" width="100px" height="50px"></td>
                         <td>{{$data->publish == 1 ? 'Published' : 'Not Published'}}</td>
                         <td>

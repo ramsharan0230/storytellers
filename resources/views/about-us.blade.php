@@ -17,19 +17,19 @@
         </div>
         <div class="about-inner-wrapper">
             <div class="about-inner-title">
-                <h2>We surround ourselves with walls. We build them piece by piece, brick by brick. Stories punch holes over them, doing the unexpected. The walls come down again, one story after another.</h2>
+                <h2>{{ $about->highlight_text }}.</h2>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner-content-side">
-                        <p>Stories are as old as human history, perhaps even older as we have told stories about times when we did not yet exist. Stories began as a way to remember important, lifesaving events. Stories are what have kept us alive throughout these ages; stories are what we remember.</p>
-                        <p>This magic of stories is what is relieved at The Storytellers, bringing stories from the corners of Nepal, about the local heroes with the local circumstances. Nepal, home to sky piercing mountains and welcoming hands, holds stories that will make you laugh, wonder and question. We believe that stories have the power to inspire and change. It is for this split second of inspiration that we strive endlessly.</p>
-                        <p>Our vision to inspire change is realized through series of events with focus on a specific category, exploring stories under this category. Till date we have been successful in carrying out nine series- Startup Series, Social Change maker Series, Educators’ Series, Music Series I, Music Series II, Pioneer Series I, Conservation Series, Pioneer Series II, Music Series exclusive with Night where over 20 story makers from these diverse fields have shared their inspiring stories with us.</p>
+                        <p>{{ $about->first_paragraph }}</p>
+                        <p>{{ $about->second_paragraph }}</p>
+                        <p>{{ $about->description }}</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="about-inner-image">
-                        <img src="images/about-us_team.jpg" alt="image">
+                        <img src="{{ asset('images/about').'/'.$about->image }}" alt="image" width="100%" height="50%">
                     </div>
                 </div>
             </div>

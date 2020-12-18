@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page_title', 'Edit Event')
+@section('page_title', 'Edit Upcoming Event')
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap-datetimepicker.min.css') }}">
 
@@ -68,7 +68,7 @@
         </div>
         @endif
         <div class="ibox-body" style="">
-          <form method="post" action="{{route('event.update', $detail->id)}}" enctype="multipart/form-data">
+          <form method="post" action="{{route('upcomingevent.update', $detail->id)}}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="row">
@@ -94,41 +94,6 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Select Series</label>
-                  <select class="form-control" name="series_id"> 
-                    <option value="">Select Series...</option>
-                    @foreach ($allSeries as $item)
-                        <option value="{{ $item->id }}" {{ $item->id == $detail->guest_id ? 'selected' : '' }}>{{ $item->name }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="first_patagraph">First Paragraph</label>
-                  <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('first_patagraph')}}"> {{ $detail->first_patagraph }}</textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="second_patagraph">Second Paragraph</label>
-                  <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('second_patagraph')}}">{{ $detail->second_patagraph }} </textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="highlight_text">Highlight Text</label>
-                  <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}">{{ $detail->highlight_text }} </textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>Change Status</label>
-                  <select class="form-control" name="status"> 
-                    <option value="">Select Status...</option>
-                    <option value="upcoming" {{ $detail->status == "upcoming" ? 'selected' : '' }}>Upcoming</option>
-                    <option value="past" {{ $detail->status == "past" ? 'selected' : '' }} >Past</option>
-                    <option value="active" {{ $detail->status == "active" ? 'selected' : '' }} >Active</option>
-                    <option value="inActive" {{ $detail->status == "inActive" ? 'selected' : '' }} >inActive</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
                   <div class="row">
                     <div class="col-sm-7">
                       <div class="form-group">
@@ -146,21 +111,15 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Video Link</label>
-                  <input type="text" class="form-control" name="video_link" value="{{ $detail->video_link }}"
-                    placeholder="Enter Video Link">
-                </div>
-
-                <div class="form-group">
                   <label>Descriptions</label>
-                  <textarea name="descriptions" id="" cols="30" rows="10" class="form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> {{ $detail->highlight_text }}</textarea>
+                  <textarea name="descriptions" id="" cols="30" rows="10" class="form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> {{ $detail->descriptions }}</textarea>
                 </div>
 
-                <div class="check-list">
-                  <label class="ui-checkbox ui-checkbox-primary">
-                    <input name="publish" type="checkbox" checked>
-                    <span class="input-span"></span>Publish</label>
-                </div>
+                <div class="check-list" style="margin-top:10px; margin-bottom:10px">
+                    <label class="ui-checkbox ui-checkbox-primary">
+                      <input name="publish" type="checkbox" {{ $detail->publish == 1 ? 'checked': ''}}>
+                      <span class="input-span"></span>Publish</label>
+                  </div>
               </div>
             </div>
               </div>
@@ -171,7 +130,7 @@
                   <div id="wrapper" class="mt-2">
                       <div id="image-holder">
                       @if($detail->banner_image)
-                      <img src="{{asset('images/banners/'. $detail->banner_image)}}"
+                      <img src="{{asset('images/upcoming/'. $detail->banner_image)}}"
                           style="margin-top:12px; margin-bottom:12px;" height="120px" width="120px" alt="">
                       @endif
                       </div>

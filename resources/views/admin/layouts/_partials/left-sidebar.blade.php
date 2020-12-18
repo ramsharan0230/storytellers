@@ -121,6 +121,11 @@ $user_access = explode(',', $user->access_level);
             </li>
             {{-- events end --}}
 
+            <li>
+                <a href="{{ route('upcomingevent.index') }}"><i class="sidebar-item-icon fa fa-globe"></i>
+                    <span class="nav-label">Upcoming Event</span></a>
+            </li>
+
             {{-- Event Gallery --}}
             <li>
                 <a href="{{ route('event.gallery') }}"><i class="sidebar-item-icon fa fa-globe"></i>

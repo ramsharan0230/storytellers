@@ -46,8 +46,8 @@
         
                                 <div class="form-group">
                                     <label>Highlight Text</label>
-                                    <input class="form-control" name="highlight_text" value="{{$about->highlight_text}}" type="text"
-                                        placeholder="Enter Highlight Text">
+                                        <textarea name="highlight_text" class="form-control" rows="8"
+                                        cols="80">{{ $about->highlight_text }}</textarea>
                                 </div>
         
                                 <div class="form-group">
@@ -79,8 +79,13 @@
                                     <label>Select Logo Image</label>
                                     <input type="file" id="fileUpload" class="form-control" name="about_logo">
                                     <div id="wrapper" class="mt-2">
-                                      <div id="image-holder">
-                                      </div>
+                                        <div id="image-holder">
+                                            @if($about->about_logo)
+                                            <img src="{{asset('images/about/'. $about->about_logo)}}"
+                                                style="margin-top:12px; margin-bottom:12px;" height="120px" width="200px"
+                                                alt="">
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
 
@@ -88,8 +93,13 @@
                                     <label>Select Banner Image</label>
                                     <input type="file" id="fileUpload" class="form-control" name="image">
                                     <div id="wrapper" class="mt-2">
-                                      <div id="image-holder">
-                                      </div>
+                                        <div id="image-holder">
+                                            @if($about->image)
+                                            <img src="{{asset('images/about/'. $about->image)}}"
+                                                style="margin-top:12px; margin-bottom:12px;" height="120px" width="120px"
+                                                alt="">
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,8 +119,101 @@
 
 @endsection
 
+
 @push('scripts')
-{{-- @include('admin.layouts._partials.ckeditorsetting') --}}
+
 @include('admin.layouts._partials.imagepreview')
+<script type="text/javascript" src="/assets/admin/js/sweetalert.js"> </script>
+<script>
+  $.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+       });
+
+$(function() {
+
+  $('#new-image').hide();
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+      // console.log(input.files);
+      // console.log(placeToInsertImagePreview);
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview).css({'width' : '100px' , 'height' : '100px', 'margin-right': '10px', 'margin-top': '10px'});
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function() {
+        $('#new-image').show();
+        imagesPreview(this, 'div.gallery');
+    });
+});
+
+
+
+
+
+</script>
+<script type="text/javascript">
+  $('body').on('click', '.remove',function(e){
+         e.preventDefault();
+         // console.log('ada');
+         var datas = $(this).data("image_id");
+         // var exam_id = $(this).data('exam_token');
+             Swal.fire({
+                 title: 'Are you sure you want to delete this Image?',
+                 type: 'warning',
+                 showCancelButton: true,
+                 confirmButtonColor: '#3085d6',
+                 cancelButtonColor: '#d33',
+                 confirmButtonText: 'Yes!'
+             }).then((result) => {
+             if (result.value) {
+               $.ajax({
+                  method: 'post',
+                  url: "#",
+                  data: {datas:datas},
+
+                  success:function(data){
+                    // var removeSection = #dami + datas;
+                    // console.log(removeSection);
+                    ajaxSuccess();
+                    $("#remove-section"+datas).replaceWith($("#remove-section"+datas).next());
+                    // $(removeSection).remove();
+                      }
+               });
+
+             }
+         })
+     })
+
+     function ajaxSuccess(){
+            Swal.fire({
+                type: 'success',
+                title: 'Deleted!!!',
+                html: '<div class="error_message">Image Deleted Successfully.</div>' ,
+                confirmButtonText: 'Close',
+                timer: 10000,
+                position: 'top-end',
+                animation: false,
+                customClass: {
+                    popup: 'animated fadeInDown'
+                }
+            });
+        }
+
+</script>
 
 @endpush

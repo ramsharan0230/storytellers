@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Series;
 use App\Models\Blog;
 use App\Models\About;
+use App\Models\UpcomingEvent;
 
 class HomeController extends Controller
 {
@@ -44,7 +45,8 @@ class HomeController extends Controller
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
         $about = About::first();
-        return view('about-us', compact(['allEvents', 'allSeries', 'blogs', 'pastEvents', 'about']));
+        $upcomingEvents = UpcomingEvent::where('publish', 1)->get();
+        return view('about-us', compact(['allEvents', 'allSeries', 'blogs', 'pastEvents', 'about', 'upcomingEvents']));
     }
 
     public function contact(){

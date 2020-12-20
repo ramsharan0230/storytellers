@@ -46,9 +46,9 @@
             </div>
             <div class="col-lg-8">
                 <div class="event-slider">
-                    @forelse ($allEvents as $item)
+                    @forelse ($upcomingEvents as $upcomingEvent)
                         <div class="image-wrapper">
-                            <a href="{{ route('event-detail', $item->slug) }}" class="event-slider-image"><img width="100%" height="100%" src="{{ asset('images/banners').'/'.$item->banner_image }}" alt="image"></a>
+                            <a href="#" class="event-slider-image"><img width="100%" height="100%" src="{{ asset('images/upcoming').'/'.$upcomingEvent->banner_image }}" alt="image"></a>
                         </div>
                     @empty
                         <div class="image-wrapper">

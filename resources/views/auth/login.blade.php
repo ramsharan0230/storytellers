@@ -41,7 +41,7 @@
         </div>
         @endif
         <form id="login-form" action="{{route('postLogin')}}" method="POST">
-            @csrf
+            <meta name="csrf-token" value="{{ csrf_token() }}" />
             <h2 class="login-title">Log in</h2>
             <div class="form-group">
                 <div class="input-group-icon right">

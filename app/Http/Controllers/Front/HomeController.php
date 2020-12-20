@@ -9,6 +9,7 @@ use App\Models\Series;
 use App\Models\Blog;
 use App\Models\About;
 use App\Models\UpcomingEvent;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
@@ -54,7 +55,8 @@ class HomeController extends Controller
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
-        return view('contact', compact('allEvents', 'allSeries', 'blogs', 'pastEvents'));
+        $contact = Contact::where('publish', 1)->first();
+        return view('contact', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'contact'));
     }
 
     public function boookings(){

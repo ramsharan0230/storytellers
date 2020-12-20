@@ -16,9 +16,15 @@
         </div>
         <div class="contact-address all-sec-padding">
             <ul>
-                <li>Patan Dhoka, Lalitpur, Nepal</li>
-                <li>Tel: +977-1-0000000</li>
-                <li><a href="#">Email: info@thestorytellersnepal.com</a></li>
+                @if($contact !== null)
+                <li>{{ $contact->address }}</li>
+                <li>Tel: {{ $contact->telephone }}</li>
+                <li>Email: {{ $contact->email }}</li>
+                <hr>
+                <li>{{ $contact->description }}</li>
+                @else
+                <li>No Contact Available!</li>
+                @endif
             </ul>
         </div>
         <div class="contact-form-section all-sec-padding">

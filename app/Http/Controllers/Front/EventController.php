@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Series;
 use App\Models\Blog;
 use DB;
+use App\Models\UpcomingEvent;
 
 class EventController extends Controller
 {
@@ -106,7 +107,8 @@ class EventController extends Controller
         $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
         $pastEvents = $this->pastEvents;
         $allSeries = Series::where('publish', 1)->get();
-        return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'allSeries', 'featuredVideo', 'blogs', 'pastEvents'));
+        $upcomingEvents = UpcomingEvent::where('publish', 1)->get();
+        return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'allSeries', 'featuredVideo', 'blogs', 'pastEvents', 'upcomingEvents'));
     }
 
     public function seriesDetail($id){

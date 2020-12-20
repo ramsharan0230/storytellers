@@ -204,7 +204,9 @@
                     <div class="col-lg-8 col-md-8 col-12">
                         <div class="inner-event">
                             <div class="image-wrapper">
-                                <a href="#" class="event-slider-image"><img src="{{ asset('images/music series_3.jpg') }}" alt="image"></a>
+                                @foreach ($upcomingEvents as $upcomintEvent)
+                                    <a href="#" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomintEvent->banner_image }}" alt="image"></a>
+                                @endforeach
                             </div>
                         </div>
                     </div>

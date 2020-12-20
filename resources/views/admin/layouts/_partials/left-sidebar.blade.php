@@ -99,7 +99,7 @@ $user_access = explode(',', $user->access_level);
             <li>
                 <a href="javascript:;">
                     <i class="sidebar-item-icon fa fa-calendar"></i>
-                    <span class="nav-label">Events</span>
+                    <span class="nav-label">Past Events</span>
                     <i class="fa fa-angle-left arrow"></i>
                 </a>
                 <ul class="nav-2-level collapse">

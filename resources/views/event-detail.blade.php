@@ -27,24 +27,24 @@
                                 <div class="innerpage-detail">
                                     <span>{{ $event->guest->name }}, {{ $event->guest->designation }}, {{ $event->guest->organization }}</span>
                                     <h2>{{ $event->title }}</h2>
-                                    <p>{{ $event->first_paragraph }}</p>
+                                    <p>{{ $event->first_patagraph }}</p>
+                                    <p>{{ $event->second_patagraph }}</p>
                                 </div>
                                 <div class="innerother-detail">
-                                    <h3>{{ $event->guest->feature_text }}</h3>
+                                    <h3>{{ $event->highlight_text }}</h3>
                                     <p>{{ $event->descriptions }}</p>
                                 </div>
                             </div>
                             <div id="storyteller" class="tab-pane fade">
                                 <div class="storyteller-section">
-                                    <?php //dd($event->guest->photo) ?>
                                     <div class="story-image-side"><span><img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}" alt="image"></span></div>
                                     <div class="story-content-side">
                                         <p>{{ $event->guest->description }}</p>
                                     </div>
                                 </div>
                                 <div class="story-image-section">
-                                    @forelse ($guestVideos as $guestVideo)
-                                        <a href="{{ route('event-detail', $guestVideo->slug) }}"><img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}"></a>
+                                        @forelse ($event->eventgalleries as $gallery)
+                                        <img src="{{ asset('images/event/gallery').'/'.$gallery->file_name }}">
                                         @empty
                                         <p>No guest video found</p>
                                     @endforelse

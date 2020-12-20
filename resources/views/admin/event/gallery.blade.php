@@ -61,9 +61,8 @@
                         </td>
                         
                         <td>
-                            <a href="{{ route('event.gallery.edit', $data->event_id) }}" class="btn btn-success btn-sm"><i
-                                    class="fa fa-edit"></i></a>
-
+                            <a class="btn btn-primary btn-sm" style="border-radius:50%" href="{{ route('event.addgallery', $data->event_id) }}">
+                                <i class="fa fa-plus"></i></a>
                             <form class="adjust-delete-button" action="{{ route('event.gallery.delete', $data->event_id) }}" method="post">
                                 @csrf
                                 @method('delete')

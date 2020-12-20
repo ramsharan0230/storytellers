@@ -64,19 +64,19 @@ class EventController extends Controller
             'guest_id' => 'required|integer',
             'series_id' => 'required|integer',
             'title' => 'required|max:199',
-            'first_patagraph' => 'required|max:1000',
-            'second_patagraph' => 'required|max:1000',
+            'first_patagraph' => 'required|max:10000',
+            'second_patagraph' => 'required|max:10000',
             'date' => 'required',
             'time' => 'required',
             'video_link' => 'required|max:199',
-            'highlight_text' => 'max:2500',
+            'highlight_text' => 'max:10000',
             'banner_image' => 'mimes:jpg,jpeg,png,gif|max:2048',
-            'descriptions' => 'max:2500',
+            'descriptions' => 'max:15000',
         ]);
 
         $formInput = $request->except(['banner_image']);
         $formInput['slug'] = SlugService::createSlug(Event::class, 'slug', $formInput['title']);
-        $formInput['status'] = is_null($request->publish) ? 0 : 1;
+        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
         $formInput['user_id'] = auth()->user()->id;
 
         if ($request->hasFile('banner_image')) {
@@ -141,6 +141,7 @@ class EventController extends Controller
 
         $formInput = $request->except(['slug', 'banner_image']);
         $formInput['slug'] = SlugService::createSlug(Event::class, 'slug', $formInput['title']);
+        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
 
         if ($request->hasFile('banner_image')) {
             if ($oldRecord->banner_image) {
@@ -240,16 +241,22 @@ class EventController extends Controller
     }
 
     public function eventGallery(Request $request){
-        $request->validate([
-            'file' => 'mimes:jpg,jpeg,png,gif|max:2048',
-            'event_id' => 'required|integer',
+        $this->validate($request, [
+            'filenames' => 'required',
+            'event_id' =>'required|integer'
         ]);
-        
-        if ($request->hasFile('file')) {
-            $formInput['file_name'] = $this->galleryImageProcessing($request->file, 750, 562, 'yes');
+            
+        if($request->hasfile('filenames'))
+        {
+            foreach($request->file('filenames') as $file)
+            {
+                if ($file) {
+                    $formInput['file_name'] = $this->galleryImageProcessing($file, 1000, 750, 'yes');
+                }  
+            }
         }
         $formInput['event_id'] = $request->event_id;
-        $formInput['publish'] = $request->publish?$request->publish:0;
+        $formInput['publish'] = $request->publish=="on"?1:0;
         $this->eventGallery->create($formInput);
 
         return redirect()->route('event.gallery')->with('message', 'Event Gallery created Successfuly.');
@@ -283,12 +290,22 @@ class EventController extends Controller
         return response(['message'=>$message, 'status'=>200]);
     }
 
+    public function addGallery($id){
+        $eventSelected = Event::whereId($id)->first();
+        return view('admin.event.upload-gallery-image', compact('eventSelected'));
+    }
+
+    public function deleteEventGalleryImage($id){
+        $this->eventGallery->find($id)->delete();
+        return redirect()->back()->with('message', 'Gallery Image deleted Successfuly.');
+    }
+
     public function galleryImageProcessing($image, $width, $height, $otherpath)
     {
         $input['imagename'] = Date("D-h-i-s") . '-' . rand() . '-' . '.' . $image->getClientOriginalExtension();
         $thumbPath = public_path('images/event/gallery');
         $img1 = Image::make($image->getRealPath());
-        $img1->fit(200, null, function ($constraint) {
+        $img1->fit(500, null, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();

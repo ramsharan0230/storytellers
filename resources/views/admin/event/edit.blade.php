@@ -116,18 +116,6 @@
                   <label for="highlight_text">Highlight Text</label>
                   <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}">{{ $detail->highlight_text }} </textarea>
                 </div>
-
-                <div class="form-group">
-                  <label>Change Status</label>
-                  <select class="form-control" name="status"> 
-                    <option value="">Select Status...</option>
-                    <option value="upcoming" {{ $detail->status == "upcoming" ? 'selected' : '' }}>Upcoming</option>
-                    <option value="past" {{ $detail->status == "past" ? 'selected' : '' }} >Past</option>
-                    <option value="active" {{ $detail->status == "active" ? 'selected' : '' }} >Active</option>
-                    <option value="inActive" {{ $detail->status == "inActive" ? 'selected' : '' }} >inActive</option>
-                  </select>
-                </div>
-
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-7">
@@ -158,9 +146,9 @@
 
                 <div class="check-list">
                   <label class="ui-checkbox ui-checkbox-primary">
-                    <input name="publish" type="checkbox" checked>
-                    <span class="input-span"></span>Publish</label>
-                </div>
+                      <input name="publish" type="checkbox" {{$detail->publish == 1 ? 'checked' : ''}}>
+                      <span class="input-span"></span>Publish</label>
+              </div>
               </div>
             </div>
               </div>

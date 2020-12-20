@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'namespace' => 'Adm
     Route::post('event/gallery/{id}/delete', 'EventController@deleteEventGallery')->name('event.gallery.delete');
     Route::get('event/gallery/{id}/show', 'EventController@showEventGallery')->name('event.gallery.show');
     Route::post('event/gallery/changeStatus', 'EventController@changeGalleryStatus')->name('event.gallery.changeStatus');
+    Route::get('event/{id}/addgallery', 'EventController@addGallery')->name('event.addgallery');
+    Route::delete('event/gallery/image/{id}/destroy', 'EventController@deleteEventGalleryImage')->name('event.gallery.image.destroy');
 
     Route::resource('upcomingevent', 'UpcomingEventController');
     

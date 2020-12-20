@@ -21,7 +21,12 @@
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">All Gallery Images</div>
+            <div class="ibox-title">All Event Galleries</div>
+            <div>
+                @if(count($eventGallery)>0)
+                    <a class="btn btn-info btn-md" href="{{route('event.addgallery', $eventGallery[0]->event_id)}}">Add Image</a>
+                @endif
+            </div>
         </div>
 
         <div class="ibox-body">
@@ -43,10 +48,7 @@
                         <td><img src="{{ asset('images/event/gallery/'.$data->file_name)}}" class="img-thumbnail" alt="" srcset=""></td>
                         <td>{{$data->publish==0?"Not Published":"Published"}}</td>
                         <td>
-                            <a href="{{route('event.edit', $data->id)}}" class="btn btn-success btn-sm"><i
-                                    class="fa fa-edit"></i></a>
-
-                            <form class="adjust-delete-button" action="{{route('event.destroy', $data->id)}}"
+                            <form class="adjust-delete-button mt-2" action="{{route('event.gallery.image.destroy', $data->id)}}"
                                 method="post">
                                 @csrf
                                 @method('delete')

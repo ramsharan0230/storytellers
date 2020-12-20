@@ -69,18 +69,18 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="first_patagraph">First Paragraph</label>
-                    <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('descriptions')}}"> </textarea>
+                    <label for="first_patagraph">Above Text Highlight(First)</label>
+                    <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description...">{{old('first_patagraph')}} </textarea>
                   </div>
 
                   <div class="form-group">
-                    <label for="second_patagraph">Second Paragraph</label>
-                    <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('descriptions')}}"> </textarea>
+                    <label for="second_patagraph">Above Text Highlight(Second)</label>
+                    <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description...">{{old('second_patagraph')}} </textarea>
                   </div>
 
                   <div class="form-group">
                     <label for="highlight_text">Highlight Text</label>
-                    <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}"> </textarea>
+                    <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" >{{old('highlight_text')}} </textarea>
                   </div>
 
                   <div class="form-group">

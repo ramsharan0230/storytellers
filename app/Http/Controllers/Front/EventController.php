@@ -96,7 +96,7 @@ class EventController extends Controller
     }
 
     public function eventDetail($slug){
-        $allEvents = Event::where('status', 'upcoming')->get();
+        $allEvents = Event::where('publish', 1)->get();
         $event = Event::where('slug', $slug)->with('guest')->first();
         $guestVideos = Event::where('guest_id', $event->guest->id)
         ->orWhere('title', 'like', '%' . $event->title . '%')

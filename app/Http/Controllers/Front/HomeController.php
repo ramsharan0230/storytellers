@@ -18,7 +18,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->allEvents = Event::where('status', 'upcoming')->get();
+        $this->allEvents = Event::where('publish', 1)->get();
         $this->featuredEvents = Event::where('video_type', 'featured')->get();
         
         $this->allSeries = Series::where('publish', 1)->get();
@@ -35,7 +35,8 @@ class HomeController extends Controller
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
         $featuredEvents = $this->featuredEvents;
-        return view('home', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'featuredEvents'));
+        $sliders = Event::where('slider', 1)->get();
+        return view('home', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'featuredEvents', 'sliders'));
     }
     public function about(){
         $allEvents = $this->allEvents;

@@ -37,7 +37,8 @@
                     <div class="col-sm-8">
                         <div class="form-group">
                             <label value="">Select Event...</label>
-                            <select onchange="getSelectedEventValue(this);" class="selectpicker form-control" data-show-subtext="true" data-live-search="true" id="event_id">
+                            @if(!$eventSelected)
+                            <select class="selectpicker form-control" name="event_id" data-show-subtext="true" data-live-search="true" id="event_id">
                                 <option value="">Select Event...</option>
                                 @forelse ($events as $event)
                                     <option value="{{ $event->id }}" data-subtext="{{ $event->organization }}">{{ $event->title }}</option>
@@ -45,6 +46,12 @@
                                   <option value="">No Event Found!</option>
                                 @endforelse
                             </select>
+                            @else
+                            <select class="selectpicker form-control" name="event_id" data-show-subtext="true" data-live-search="true" id="event_id">
+                              <option value="">Select Event...</option>
+                                <option value="{{ $eventSelected->id }}" data-subtext="{{ $eventSelected->organization }}" selected>{{ $eventSelected->title }}</option>
+                            </select>
+                            @endif
                           </div>  
                     </div>
                     <div class="col-sm-4">
@@ -55,14 +62,26 @@
                               <span class="input-span"></span>Publish</label>
                           </div>
                     </div>
-                    <div class="col-sm-10">
-                        <div class="form-group">
-                            <label for="image-file">Select Multiple Event Photos</label>
-                            <div class="file-loading">
-                                <input id="image-file" type="file" name="file" accept="image/*" data-min-file-count="1" multiple>
-                            </div>
-                        </div> 
+                </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <div class="input-group hdtuto control-group lst increment" >
+                      <input type="file" name="filenames[]" class="myfrm form-control">
+                      <div class="input-group-btn"> 
+                        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+                      </div>
                     </div>
+                    <div class="clone hide">
+                      <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                        <input type="file" name="filenames[]" class="myfrm form-control">
+                        <div class="input-group-btn"> 
+                          <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                    <button type="submit" class="btn btn-success" style="margin-top:10px">Submit</button>
                 </div> 
             </form>
           </div>
@@ -81,6 +100,17 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".btn-success").click(function(){ 
+        var lsthmtl = $(".clone").html();
+        $(".increment").after(lsthmtl);
+    });
+    $("body").on("click",".btn-danger",function(){ 
+        $(this).parents(".hdtuto control-group lst").remove();
+    });
+  });
+</script>
 <script type="text/javascript">
     var event_id='';
     var publish='';
@@ -110,6 +140,9 @@
                 event_id:event_id,
                 publish: publish
             };
+        },
+        success(){
+          windows.reload()
         }
     });
   </script>

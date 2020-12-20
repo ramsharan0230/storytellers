@@ -54,7 +54,7 @@
                     <tr>
                         <td>{{$data->title}}</td>
                         <td><img src="{{ asset('images/about').'/'.$data->about_logo }}" alt="" width="100px" height="50px"></td>
-                        <td>{{$data->highlight_text}}</td>
+                        <td>{{ $data->highlight_text}}</td>
                         <td>{{ $data->first_paragraph }}</td>
                         <td>{{ $data->second_paragraph }}</td>
                         <td><img src="{{ asset('images/about').'/'.$data->image }}" alt="" width="100px" height="50px"></td>

@@ -13,7 +13,7 @@
 <section class="about-page">
     <div class="container">
         <div class="about-image">
-            <img src="{{ asset('images/about').'/'.$about->about_logo }}" width="" alt="image">
+            <img src="{{ asset('images/about/about_the_storytellers.png') }}" width="" alt="image">
         </div>
         <div class="about-inner-wrapper">
             <div class="about-inner-title">

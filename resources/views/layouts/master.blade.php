@@ -10,6 +10,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}">
+    @php $dashboard = DB::table('dashboards')->first() @endphp
+    @if($dashboard)
+        <link rel="icon" href="{{ URL::asset('/images/main').'/'.$dashboard->logo }}" type="image/x-icon"/>
+    @endif
     @stack('styles')
 </head>
     <body>

@@ -46,5 +46,4 @@
 
 @include('includes.footer')
 
-
 @stop

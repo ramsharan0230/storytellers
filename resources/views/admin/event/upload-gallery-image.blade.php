@@ -37,7 +37,7 @@
                     <div class="col-sm-8">
                         <div class="form-group">
                             <label value="">Select Event...</label>
-                            @if(!$eventSelected)
+                            @if($eventSelected == null)
                             <select class="selectpicker form-control" name="event_id" data-show-subtext="true" data-live-search="true" id="event_id">
                                 <option value="">Select Event...</option>
                                 @forelse ($events as $event)

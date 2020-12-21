@@ -31,13 +31,12 @@
                         <th>Person Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Event</th>
+                        <th>Upcoming Event</th>
                         <th>Booked Status</th>
                         <th>Options</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     @if($details->count())
                     @foreach($details as $key => $data)
                     <tr>
@@ -45,7 +44,7 @@
                         <td>{{$data->name}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->phone}}</td>
-                        <td>{{$data->event->title }}</td>
+                        <td>{{$data->upcomingEvent->title }}</td>
                         <td>
                             @if($data->isBooked==1)
                                 <button class="btn btn-sm btn-success">Booked</button>

@@ -177,7 +177,7 @@ class EventController extends Controller
 
         $img1 = Image::make($image->getRealPath());
         
-        $img1->fit(200, null, function ($constraint) {
+        $img1->fit(683, 373, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();
@@ -230,8 +230,9 @@ class EventController extends Controller
     }
 
     public function createEventGallery(){
-        $events = Event::all();
-        return view('admin.event.upload-gallery-image', compact('events'));
+        $events = Event::where('publish', 1)->get();
+        $eventSelected = null;
+        return view('admin.event.upload-gallery-image', compact('events', 'eventSelected'));
     }
 
     public function eventGalleryIndex(){
@@ -305,7 +306,7 @@ class EventController extends Controller
         $input['imagename'] = Date("D-h-i-s") . '-' . rand() . '-' . '.' . $image->getClientOriginalExtension();
         $thumbPath = public_path('images/event/gallery');
         $img1 = Image::make($image->getRealPath());
-        $img1->fit(500, null, function ($constraint) {
+        $img1->fit(683, 373, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();

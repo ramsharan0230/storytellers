@@ -33,10 +33,10 @@ class PagesController extends Controller
         $formInput['publish'] = is_null($request->published) ? 0 : 1;
 
         if ($request->hasFile('image')) {
-            $formInput['image'] = $this->imageProcessing($request->image, 750, 562, 'yes');
+            $formInput['image'] = $this->aboutFeatureImageProcessing($request->image, 750, 562, 'yes');
         }
         if ($request->hasFile('about_logo')) {
-            $formInput['about_logo'] = $this->imageProcessing($request->about_logo, 750, 562, 'yes');
+            $formInput['about_logo'] = $this->aboutLogoImageProcessing($request->about_logo, 750, 562, 'yes');
         }
         
         About::create($formInput);
@@ -68,13 +68,13 @@ class PagesController extends Controller
             if ($oldRecord->image) {
                 $this->unlinkImage($oldRecord->image);
             }
-            $formInput['image'] = $this->imageProcessing($request->image, 750, 562, 'yes');
+            $formInput['image'] = $this->aboutFeatureImageProcessing($request->image, 750, 562, 'yes');
         }
         if ($request->hasFile('about_logo')) {
             if ($oldRecord->about_logo) {
                 $this->unlinkImage($oldRecord->about_logo);
             }
-            $formInput['about_logo'] = $this->imageProcessing($request->about_logo, 750, 562, 'yes');
+            $formInput['about_logo'] = $this->aboutLogoImageProcessing($request->about_logo, 750, 562, 'yes');
         }
 
         About::find($id)->update($formInput);
@@ -132,14 +132,29 @@ class PagesController extends Controller
         return view('admin.pages.team');
     }
 
-    public function imageProcessing($image, $width, $height, $otherpath)
+    public function aboutFeatureImageProcessing($image, $width, $height, $otherpath)
     {
         $input['imagename'] = Date("D-h-i-s") . '-' . rand() . '-' . '.' . $image->getClientOriginalExtension();
         $thumbPath = public_path('images/about');
 
         $img1 = Image::make($image->getRealPath());
         
-        $img1->fit(600, 360, function ($constraint) {
+        $img1->fit(505, 278, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($thumbPath . '/' . $input['imagename']);
+        $img1->destroy();
+
+        return $input['imagename'];
+    }
+
+    public function aboutLogoImageProcessing($image, $width, $height, $otherpath)
+    {
+        $input['imagename'] = Date("D-h-i-s") . '-' . rand() . '-' . '.' . $image->getClientOriginalExtension();
+        $thumbPath = public_path('images/about');
+
+        $img1 = Image::make($image->getRealPath());
+        
+        $img1->fit(788, 154, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();

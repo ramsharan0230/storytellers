@@ -516,6 +516,17 @@ a.featured-title-wrapp {
     font-weight: 400;
 
 }
+.blog-section h1 {
+    font-size: 44px;
+    font-weight: 400;
+}
+
+.featured-name {
+    font-size: 18px;
+    color: #03182D;
+    position: relative;
+    margin-top: 60px;
+}
 
 .about-btn {
 

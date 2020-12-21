@@ -98,8 +98,8 @@ class BlogController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'short_description' => 'max:500',
-            'description' => 'required|max:2500',
+            'short_description' => 'max:15000',
+            'description' => 'required|max:15000',
             'image' => 'mimes:jpg,jpeg,png,gif|max:3048',
         ]);
 
@@ -142,7 +142,7 @@ class BlogController extends Controller
 
         $img1 = Image::make($image->getRealPath());
         
-        $img1->fit(200, null, function ($constraint) {
+        $img1->fit(1140, 408, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();

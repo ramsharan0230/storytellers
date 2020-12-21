@@ -10,6 +10,7 @@ use App\Models\Blog;
 use App\Models\About;
 use App\Models\UpcomingEvent;
 use App\Models\Contact;
+use App\Models\Dashboard;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,7 @@ class HomeController extends Controller
     protected $allSeries = null;
     protected $pastEvents = null;
     protected $featuredEvents = null;
+    protected $dashboards = null;
 
     public function __construct()
     {
@@ -25,7 +27,7 @@ class HomeController extends Controller
         
         $this->allSeries = Series::where('publish', 1)->get();
         $this->blogs = Blog::where('publish', 1)->limit(5)->get();
-
+        $this->dashboards = Dashboard::first();
         $dayAgo = 6;
         $dayToCheck = \Carbon\Carbon::now()->subDays($dayAgo)->format('Y-m-d');
         $this->pastEvents = Event::whereDate("created_at", '>=', $dayToCheck)->where('video_type', 'past')->get();
@@ -38,7 +40,9 @@ class HomeController extends Controller
         $pastEvents = $this->pastEvents;
         $featuredEvents = $this->featuredEvents;
         $sliders = Event::where('slider', 1)->get();
-        return view('home', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'featuredEvents', 'sliders'));
+        $dashboards = $this->dashboards;
+        $about = About::first();
+        return view('home', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'featuredEvents', 'sliders', 'dashboards', 'about'));
     }
     public function about(){
         $allEvents = $this->allEvents;
@@ -61,11 +65,12 @@ class HomeController extends Controller
 
     public function boookings(){
         $allEvents = $this->allEvents;
+        $upcomingEvents = UpcomingEvent::where('publish', 1)->get();
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
         $events = Event::all();
-        return view('bookings', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'events'));
+        return view('bookings', compact('allEvents', 'allSeries', 'blogs', 'upcomingEvents', 'pastEvents', 'events'));
     }
 
     public function videoList(){

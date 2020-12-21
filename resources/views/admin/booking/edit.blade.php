@@ -24,11 +24,9 @@
       </ul>
    </div>
    @endif
-   <form method="post" action="{{route('booking.update', $detail->id)}}" enctype="multipart/form-data">
+   <form method="post" action="{{route('bookings.update', $detail->id)}}" enctype="multipart/form-data">
       @csrf
       @method('put')
-      <input type="hidden" name="exhibitor_id" value="{{$detail->exhibitor_id}}">
-
       <div class="row">
          <div class="col-md-12">
             <div class="ibox">
@@ -38,17 +36,19 @@
                <div class="ibox-body" style="">
                   <div class="row">
                      <div class="form-group col-md-12">
-                        <label>Client</label>
-                        <input class="form-control" name="text" name="user_id" disabled value="{{$detail->user->name}}"
+                        <label>Upcoming Event</label>
+                        <input class="form-control" name="text" name="event" disabled value="{{ $detail->upcomingEvent->title }}"
+                           type="text">
+                        <input class="form-control" name="text" name="upcoming_event_id" disabled value="{{ $detail->upcomingEvent->id }}"
                            type="text">
                      </div>
                      <div class="form-group col-md-12">
                         <label>Date</label>
-                        <input class="form-control" name="date" value="{{$detail->date}}" type="text">
+                        <input class="form-control" name="date" disabled value="{{$detail->upcomingEvent->date}}" type="text">
                      </div>
                      <div class="form-group col-md-12">
                         <label>Time</label>
-                        <input class="form-control" name="time" value="{{$detail->datetime->time}}" type="text">
+                        <input class="form-control" name="time" disabled value="{{$detail->upcomingEvent->time}}" type="text">
                      </div>
                   </div>
 

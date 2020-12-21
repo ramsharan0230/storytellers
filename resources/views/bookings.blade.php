@@ -25,10 +25,10 @@
                     <form method="post" class="contact-form" action="{{ route('booking.store') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <label for="event_id">Select Event:</label>
-                        <select name="event_id" id="event_id" class="form-control">
+                        <select name="upcoming_event_id" id="event_id" class="form-control">
                             <option value="">Select Event</option>
-                            @forelse ($events as $event)
-                                <option value="{{ $event->id }}">{{ $event->title }}</option>
+                            @forelse ($upcomingEvents as $upcomingEvent)
+                                <option value="{{ $upcomingEvent->id }}">{{ $upcomingEvent->title }}</option>
                             @empty
                                 <option value="">No Event Found</option>
                             @endforelse

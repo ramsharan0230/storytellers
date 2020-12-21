@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\Event\EventRepository;
+use App\Repositories\UpcomingEvent\UpcomingEventRepository;
 use App\Repositories\Booking\BookingRepository;
 use App\Models\Booking;
 
 class BookingController extends Controller
 {
-    public function __construct(EventRepository $event, BookingRepository $model)
+    public function __construct(UpcomingEventRepository $upcomingEvent, BookingRepository $model)
     {
         $this->model = $model;
+        $this->upcomingEvent = $upcomingEvent;
     }
 
     public function index()
@@ -23,23 +24,14 @@ class BookingController extends Controller
 
     public function edit($id)
     {
-        $detail = $this->model->with(['datetime', 'user'])->findOrFail($id);
+        $detail = $this->model->findOrFail($id);
         return view('admin.booking.edit', compact('detail'));
     }
     public function update(Request $request, $id)
     {
-        $detail = $this->model->findOrFail($id);
-        $datetime = $this->datetime->findOrFail($detail->datetime_id);
-        $formData = $request->except(['isBooked']);
-        if (is_null($request->isBooked)) {
-            $formData['isBooked'] = 0;
-        } else {
-            $formData['isBooked'] = 1;
-            $datetime->isAvailable = 0;
-            $datetime->save();
-        }
-        $detail->update($formData);
-        return redirect()->route('admin.allBookings')->with('message', 'Booking updated successfully');
+        $book = is_null($request->isBooked)?0:1;
+        Booking::where('id', $id)->update(array('isBooked' => $book));
+        return redirect()->route('bookings.index')->with('message', 'Booking updated successfully');
     }
 
     public function conform(Request $request, $id){

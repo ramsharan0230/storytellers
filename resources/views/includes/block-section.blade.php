@@ -3,8 +3,8 @@
         @if(count($blogs)>=3)
         <div class="row">
             <div class="col-lg-7 col-md-7 col-12">
-                <a href="#" class="block-left-side">
-                    <div href="#" class="slider-btn block-btn btn " tabindex="0">
+                <a href="{{ route('blog-detail', $blogs[0]->slug) }}" class="block-left-side">
+                    <div class="slider-btn block-btn btn " tabindex="0">
                         <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
                         <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                     </div>
@@ -15,8 +15,8 @@
                         </div>
                     </div>
                 </a>
-                <a href="#" class="block-left-side block-left-second">
-                    <div href="#" class="slider-btn block-btn btn " tabindex="0">
+                <a href="{{ route('blog-detail', $blogs[1]->slug) }}" class="block-left-side block-left-second">
+                    <div class="slider-btn block-btn btn " tabindex="0">
                         <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
                         <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                     </div>
@@ -28,7 +28,7 @@
                 </a>
             </div>
             <div class="col-lg-5 col-md-5 col-12">
-                <a href="#" class="block-left-side block-right-side">
+                <a href="{{ route('blog-detail', $blogs[2]->slug) }}" class="block-left-side block-right-side">
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[2]->title }}</h2>
@@ -36,7 +36,7 @@
                             <p>{{ html_entity_decode($blogs[2]->description) }}</p>
                         </div>
                     </div>
-                    <div href="#" class="slider-btn block-btn btn " tabindex="0">
+                    <div class="slider-btn block-btn btn " tabindex="0">
                         <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
                         <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">
                     </div>
@@ -47,7 +47,7 @@
         @if(count($blogs)>=5)
         <div class="row">
             <div class="col-lg-5 col-md-5 col-12">
-                <a href="#" class="block-left-side block-right-side second-row">
+                <a href="{{ route('blog-detail', $blogs[3]->slug) }}" class="block-left-side block-right-side second-row">
                     <div class="block-content second-row-content">
                         <div class="about-title-side second-row-title">
                             <img width="100%" src="{{ asset('images/banners').'/'.$blogs[3]->image }}" class="block-right-image" alt="image">
@@ -61,7 +61,7 @@
                 </a>
             </div>
             <div class="col-lg-7 col-md-7 col-12">
-                <a href="#" class="block-left-side">
+                <a href="{{ route('blog-detail', $blogs[4]->slug) }}" class="block-left-side">
                     <div href="#" class="slider-btn block-btn btn " tabindex="0">
                         <img src="{{ asset('images/icon_arrrow right-1.png') }}" id="hide-in-hover" alt="icon">
                         <img src="{{ asset('images/icon_arrrow right-2.png') }}" id="display-in-hover" alt="icon">

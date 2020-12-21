@@ -37,7 +37,6 @@
                         <th>Title</th>
                         <th>Guest</th>
                         <th>Series</th>
-                        <th>Video Link</th>
                         <th>Highlight Text</th>
                         <th>Banner Image</th>
                         <th>Slider</th>
@@ -54,7 +53,6 @@
                         <td>{{ucfirst($data->title)}}</td>
                         <td>{{$data->guest->name}}</td>
                         <td>{{ $data->series->name }}</td>
-                        <td>{{$data->video_link}}</td>
                         <td>{{$data->highlight_text}}</td>
                         <td><img src="{{ asset('images/banners/'.$data->banner_image)}}" width="100px" height="50px" alt="" srcset=""></td>
                         <td>
@@ -71,7 +69,7 @@
                               <span class="input-span"></span>Make Featured</label>
                             </div>
                         </td>
-                        <td>{{$data->status }}</td>
+                        <td>{{$data->publish==1?"Published":"Not Published" }}</td>
                         <td>
                             <a href="{{route('event.edit', $data->id)}}" class="btn btn-success btn-sm"><i
                                     class="fa fa-edit"></i></a>

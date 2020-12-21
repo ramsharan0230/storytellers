@@ -13,8 +13,9 @@
 <section class="about-page">
     <div class="container">
         <div class="about-image">
-            <img src="{{ asset('images/about/about_the_storytellers.png') }}" width="" alt="image">
+            <img src="{{ asset('images/about').'/'.$about->about_logo }}" width="" alt="image">
         </div>
+        @if($about != null)
         <div class="about-inner-wrapper">
             <div class="about-inner-title">
                 <h2>{{ $about->highlight_text }}.</h2>
@@ -34,6 +35,13 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="about-inner-wrapper">
+            <div class="about-inner-title">
+                <h2>No About Found!</h2>
+            </div>
+        </div>
+        @endif
     </div>
 </section>
 

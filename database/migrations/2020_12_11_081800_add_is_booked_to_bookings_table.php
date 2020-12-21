@@ -14,7 +14,7 @@ class AddIsBookedToBookingsTable extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->string('remarks', 1000);
+            $table->string('remarks', 1000)->nullable();
             $table->boolean('isBooked', 0, 1)->default(0);
         });
     }

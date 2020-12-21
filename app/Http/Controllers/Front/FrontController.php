@@ -18,7 +18,7 @@ class FrontController extends Controller
 
     public function bookings(Request $request){
         $request->validate([
-            'event_id' => 'required|integer',
+            'upcoming_event_id' => 'required|integer',
             'name' => 'required|max:199',
             'email' => 'email|required',
             'phone' => 'required|max:15',
@@ -26,7 +26,6 @@ class FrontController extends Controller
             'address' => 'required|max:250',
             'message' => 'required|max:2500',
         ]);
-
         $formInput = $request->all();
         $this->model->create($formInput);
         return redirect()->route('bookings')->with('message', 'Booking Created Successfuly.');

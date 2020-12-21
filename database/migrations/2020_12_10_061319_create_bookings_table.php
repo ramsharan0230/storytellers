@@ -16,12 +16,13 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('event_id')->unsigned();
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->unsignedBigInteger('upcoming_event_id')->unsigned();
+            $table->foreign('upcoming_event_id')->references('id')->on('upcoming_events');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address', 199)->nullable();
             $table->text('message', 2500)->nullable();
+            $table->text('remarks', 25000)->nullable();
             $table->boolean('publish', 0, 1)->default(1);
             $table->timestamps();
         });

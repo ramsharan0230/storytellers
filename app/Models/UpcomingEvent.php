@@ -25,4 +25,8 @@ class UpcomingEvent extends Model
     public function guest(){
         return $this->belongsTo('App\Models\Guest');
     }
+
+    public function bookings(){
+        return $this->hasMany('App\Models\Booking', 'upcoming_event_id', 'id');
+    }
 }

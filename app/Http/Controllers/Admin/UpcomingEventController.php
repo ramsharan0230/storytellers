@@ -116,7 +116,7 @@ class UpcomingEventController extends Controller
 
         $img1 = Image::make($image->getRealPath());
         
-        $img1->fit(540,300, function ($constraint) {
+        $img1->fit(710,308, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();

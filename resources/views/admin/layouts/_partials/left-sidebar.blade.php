@@ -51,13 +51,6 @@ $user_access = explode(',', $user->access_level);
                             Contact
                         </a>
                     </li>
-                    <li>
-                        {{-- <a href="{{route('user.create')}}"> --}}
-                            <a href="{{route('page.team')}}">
-                                <span class="fa fa-circle-o"></span>
-                            Team
-                        </a>
-                    </li>
                 </ul>
             </li>
             {{-- page end --}}

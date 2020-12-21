@@ -11,7 +11,7 @@
 
 <section class="contact-page all-sec-padding">
     <div class="container">
-        
+        @if($blogs->count() > 0)
         <div class="inner-block-section all-sec-padding">
             <div class="container">
                 <div class="row">
@@ -31,12 +31,23 @@
                             </a>
                         </div>
                     @empty
-                        
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <a href="{{ route('blog-detail', $blog->slug) }}" class="block-left-side block-right-side second-row">
+                                <div class="block-content second-row-content">
+                                    <div class="about-title-side second-row-title">
+                                        <h3>No Blog Found!</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>    
                     @endforelse
                 </div>
             </div>
             {{ $blogs->links() }}
         </div>
+        @else
+        <h3>No Blog Found!</h3>
+        @endif
     </div>
 </section>
 

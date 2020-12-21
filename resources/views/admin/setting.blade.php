@@ -23,6 +23,7 @@
         </ul>
     </div>
     @endif
+    @if($detail == !null)
     <form method="post" action="{{ route('setting.update', $detail->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -115,43 +116,7 @@
                                 <input class="form-control" type="text" name="video_link"
                                     value="{{$detail->video_link}}" placeholder="Video link">
                             </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Exhibition Start Date</label>
-                                <input class="form-control" type="date" name="exhb_start_date"
-                                    value="{{$detail->exhb_start_date}}">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Exhibition Start Time</label>
-                                <input class="form-control" type="time" name="exhb_start_time"
-                                    value="{{$detail->exhb_start_time}}">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Exhibition End Date</label>
-                                <input class="form-control" type="date" name="exhb_end_date"
-                                    value="{{$detail->exhb_end_date}}">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Exhibition End Time</label>
-                                <input class="form-control" type="time" name="exhb_end_time"
-                                    value="{{$detail->exhb_end_time}}">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Chat on Viber</label>
-                                <input class="form-control" type="text" value="{{$detail->chat_viber}}" name="chat_viber"
-                                    placeholder="9779890909090">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Chat on Whatsapp</label>
-                                <input class="form-control" type="text" value="{{$detail->chat_whatsapp}}" name="chat_whatsapp"
-                                    placeholder="9779890909090">
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <label>Chat on messenger</label>
-                                <input class="form-control" type="text" value="{{$detail->chat_messenger}}" name="chat_messenger"
-                                    placeholder="Enter messenger link">
-                            </div>
-                            
-                            
+
                             <div class="form-group col-md-6">
                                 <label>banner image</label>
                                 <input id="fileUpload1" class="form-control" value="{{$detail->banner_image}}"
@@ -167,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label>Logo</label>
+                                <label>Favicon icon</label>
                                 <input id="fileUpload2" class="form-control" value="{{$detail->logo}}" name="logo"
                                     type="file">
                                 <div id="wrapper" class="mt-2">
@@ -190,6 +155,7 @@
             <button type="submit" class="btn btn-block btn-primary">Save</button>
         </div>
     </form>
+    @endif
 </div>
 
 @endsection

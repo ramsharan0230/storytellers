@@ -26,7 +26,7 @@ class HomeController extends Controller
         $this->featuredEvents = Event::where('video_type', 'featured')->get();
         
         $this->allSeries = Series::where('publish', 1)->get();
-        $this->blogs = Blog::where('publish', 1)->limit(5)->get();
+        $this->blogs = Blog::where('publish', 1)->limit(5)->orderBy('created_at', 'DESC')->get();
         $this->dashboards = Dashboard::first();
         $dayAgo = 6;
         $dayToCheck = \Carbon\Carbon::now()->subDays($dayAgo)->format('Y-m-d');
@@ -78,7 +78,8 @@ class HomeController extends Controller
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
-        return view('video-list', compact('allEvents', 'allSeries', 'blogs', 'pastEvents'));
+        $upcomingEvents = UpcomingEvent::where('publish', 1)->orderBy('created_at', 'DESC')->get();
+        return view('video-list', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'upcomingEvents'));
     }
 
     public function FeaturedVideo(){

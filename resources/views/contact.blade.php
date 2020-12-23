@@ -27,7 +27,7 @@
                 @endif
             </ul>
         </div>
-        <div class="contact-form-section all-sec-padding">
+        <div class="contact-form-section all-sec-padding" >
             <div class="row">
                 <div class="col-lg-6">
                     <form action="" class="contact-form">

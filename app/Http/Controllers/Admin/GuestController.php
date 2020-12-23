@@ -41,8 +41,8 @@ class GuestController extends Controller
         $request->validate([
             'name' => 'required',
             'designation' => 'required',
-            'photo' => 'mimes:jpg,jpeg,png,gif|max:2048',
-            'description' => 'max:2500',
+            'photo' => 'required|mimes:jpg,jpeg,png,gif|max:2048',
+            'description' => 'max:15000',
             'organization' => 'max:199'
         ]);
 
@@ -118,10 +118,18 @@ class GuestController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'designation' => 'required',
+            'photo' => 'mimes:jpg,jpeg,png,gif|max:2048',
+            'description' => 'max:15000',
+            'organization' => 'max:199'
+        ]);
+
         $old = $this->guest->find($id);
         $formInput = $request->all();
 
-        $formInput['status'] = is_null($request->publish) ? 0 : 1;
+        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
 
         if ($request->hasFile('photo')) {
             if ($old->photo) {

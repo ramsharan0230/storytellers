@@ -60,6 +60,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'guest_id' => 'required|integer',
             'series_id' => 'required|integer',
@@ -76,7 +77,7 @@ class EventController extends Controller
 
         $formInput = $request->except(['banner_image']);
         $formInput['slug'] = SlugService::createSlug(Event::class, 'slug', $formInput['title']);
-        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
+        $formInput['publish'] = $request->publish =="on"? 1 : 0;
         $formInput['user_id'] = auth()->user()->id;
 
         if ($request->hasFile('banner_image')) {
@@ -141,7 +142,7 @@ class EventController extends Controller
 
         $formInput = $request->except(['slug', 'banner_image']);
         $formInput['slug'] = SlugService::createSlug(Event::class, 'slug', $formInput['title']);
-        $formInput['publish'] = is_null($request->publish) ? 0 : 1;
+        $formInput['publish'] = $request->publish =="on"? 1 : 0;
 
         if ($request->hasFile('banner_image')) {
             if ($oldRecord->banner_image) {

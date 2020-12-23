@@ -11,7 +11,7 @@
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[0]->title }}</h2>
-                            <p>{{ html_entity_decode($blogs[0]->description) }}</p>
+                            <p>{{ html_entity_decode($blogs[0]->short_description) }}</p>
                         </div>
                     </div>
                 </a>
@@ -33,7 +33,7 @@
                         <div class="about-title-side">
                             <h2>{{ $blogs[2]->title }}</h2>
                             <img src="{{ asset('images/banners').'/'.$blogs[2]->image }}" class="block-right-image" alt="image">
-                            <p>{{ html_entity_decode($blogs[2]->description) }}</p>
+                            <p>{{ html_entity_decode($blogs[2]->short_description) }}</p>
                         </div>
                     </div>
                     <div class="slider-btn block-btn btn " tabindex="0">
@@ -44,7 +44,7 @@
             </div>
         </div>
         @endif
-        @if(count($blogs)>=5)
+        @if(count($blogs)==5 || count($blogs)>5)
         <div class="row">
             <div class="col-lg-5 col-md-5 col-12">
                 <a href="{{ route('blog-detail', $blogs[3]->slug) }}" class="block-left-side block-right-side second-row">
@@ -69,7 +69,7 @@
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[4]->title }}</h2>
-                            <p>{{ html_entity_decode(htmlentities($blogs[4]->description)) }}</p>
+                            <p>{{ html_entity_decode(htmlentities($blogs[4]->short_description)) }}</p>
                         </div>
                     </div>
                 </a>

@@ -188,7 +188,7 @@ header#header.sticky {
 .slider-image-side img {
 
     width: 100%;
-    height: 370px;
+    height: 474px;
     object-fit: cover;
 }
 
@@ -554,7 +554,7 @@ a.featured-title-wrapp {
 
 .all-sec-padding {
 
-    padding: 80px 0;
+    padding: 25px 0;
 }
 
 .about-content-side {
@@ -887,4 +887,31 @@ footer {
 
     height: auto;
     width: 100px;
+}
+.blog-section h1 {
+    font-size: 44px;
+    font-weight: 400;
+}
+
+.featured-name {
+    font-size: 18px;
+    color: #03182D;
+    position: relative;
+}
+
+.clip-list {
+    padding-left: 50px;
+    margin-top: 220px;
+    border-left: 1px solid #B3CACE;
+}
+
+.clip-box p {
+    position: relative;
+    margin-left: 45px;
+    font-size: 24px;
+    line-height: 1.2;
+    z-index: 11;
+}
+.details {
+    padding-right: 50px;
 }

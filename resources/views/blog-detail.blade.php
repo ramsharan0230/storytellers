@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-lg-8  col-12">
                 <h1 class="featured-name">{{ $blog->title }}</h1>
-                <p class="mt-2">{{ $blog->updated_at }}</p>
+                <p class="mt-2">{{ $blog->created_at }}</p>
                 <div class="details">
                     <p>
                         {{ $blog->short_description }}
@@ -42,23 +42,21 @@
             </div>
             <div class="col-lg-4  col-12">
                 <div class="clip-list">
-                    @forelse ($blogs as $relatedItem)
-                        <div class="clip-box mt-5">
-                            <div class="overlay-box"></div>
-                            <span class="featured-icon"><img src="{{ asset('images/banners').'/'.$relatedItem->image }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/banners').'/'.$relatedItem->image }}" id="display-on-hover" alt="icon"></span>
-                            <p style="font-weight: bold">{{ $relatedItem->title }}</p>
-                        </div>
-                        <div class="clip-box mt-5">
+                    @forelse ($relatedBlogs as $blog)
+                    <div class="clip-box mt-5">
+                        <div class="overlay-box"></div>
+                        <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
+                        <p>{{ $blog->title }}</p>
+                    </div>
+                    <div class="clip-box mt-5">
                     @empty
-                        
+                        No Related Blog Found!
                     @endforelse
                 </div>
                 
             </div>
-
         </div>
     </div>
-
 </section>
 <!-- blog section ends -->
 
@@ -94,7 +92,7 @@
                        
                    @endforelse
                </div>
-               {{-- <span class="video-btn-wrapper"><a href="#" class="more-btn btn">More Videos</a></span> --}}
+               <span class="video-btn-wrapper"><a href="{{ route('video-list') }}" class="more-btn btn">More Videos</a></span>
             </div>
             <div id="recent" class="tab-pane fade">
                 <div class="row front-tab-wrapper">
@@ -117,7 +115,7 @@
                        No Recent Found!!
                    @endforelse
                </div>
-               <span class="video-btn-wrapper"><a href="#" class="more-btn btn">More Videos</a></span>
+               <span class="video-btn-wrapper"><a href="{{ route('video-list') }}" class="more-btn btn">More Videos</a></span>
             </div>
         </div>
     </div>

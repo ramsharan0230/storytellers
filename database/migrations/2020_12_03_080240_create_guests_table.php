@@ -16,9 +16,9 @@ class CreateGuestsTable extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('designation');
-            $table->string('photo');
-            $table->text('description', 2500)->nullable();
+            $table->string('designation')->nullable();
+            $table->string('photo')->nullable();
+            $table->text('description', 15000)->nullable();
             $table->string('organization')->nullable();
             $table->string('slug')->nullable();
             $table->boolean('publish', 0, 1)->default(0);

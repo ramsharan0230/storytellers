@@ -11,7 +11,7 @@ class Event extends Model
     use HasFactory, Sluggable;
 
     protected $table = 'events';
-    protected $fillable = ['guest_id', 'series_id', 'title', 'date', 'time', 'first_patagraph', 'second_patagraph', 'video_link', 'highlight_text', 'status', 'banner_image', 'descriptions', 'user_id'];
+    protected $fillable = ['guest_id', 'series_id', 'title', 'date', 'time', 'first_patagraph', 'second_patagraph', 'video_link', 'highlight_text', 'publish', 'banner_image', 'descriptions', 'user_id'];
 
     public function sluggable()
     {

@@ -62,7 +62,7 @@
                                 <a href="{{ route('event-detail', $similer_video->slug) }}" class="feature-image">
                                     <iframe src="https://www.youtube.com/embed/{{$event->youtubeVideo($similer_video->video_link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </a>
-                                <a href="#" class="featured-title-wrapp">
+                                <a href="{{ route('event-detail', $similer_video->slug) }}" class="featured-title-wrapp">
                                     <div class="featured-title-side">
                                         <h3>{{ $similer_video->title }}</h3>
                                         <p class="featured-name">{{ $similer_video->guest->name }}</p>
@@ -125,7 +125,7 @@
                             <div class="block-content">
                                 <div class="about-title-side">
                                     <h2>{{ $blogs[0]->title }}</h2>
-                                    <p>{{ $blogs[0]->description }}</p>
+                                    <p>{{ $blogs[0]->short_description }}</p>
                                 </div>
                             </div>
                         </a>
@@ -147,7 +147,7 @@
                                 <div class="about-title-side">
                                     <h2>{{ $blogs[2]->title }}</h2>
                                     <img src="{{ asset('images/banners').'/'.$blogs[2]->image }}" class="block-right-image" alt="image">
-                                    <p>{{ $blogs[2]->description }}</p>
+                                    <p>{{ $blogs[2]->short_description }}</p>
                                 </div>
                             </div>
                             <div href="{{ route('blog-detail', $blogs[2]->slug) }}" class="slider-btn block-btn btn " tabindex="0">
@@ -183,7 +183,7 @@
                             <div class="block-content">
                                 <div class="about-title-side">
                                     <h2>{{ $blogs[4]->title }}</h2>
-                                    <p>{{ $blogs[4]->description }}</p>
+                                    <p>{{ $blogs[4]->short_description }}</p>
                                 </div>
                             </div>
                         </a>

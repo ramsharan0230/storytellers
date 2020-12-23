@@ -103,12 +103,12 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="first_patagraph">First Paragraph</label>
+                  <label for="first_patagraph">Above Text Highlight(First)</label>
                   <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('first_patagraph')}}"> {{ $detail->first_patagraph }}</textarea>
                 </div>
 
                 <div class="form-group">
-                  <label for="second_patagraph">Second Paragraph</label>
+                  <label for="second_patagraph">Above Text Highlight(Second)</label>
                   <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('second_patagraph')}}">{{ $detail->second_patagraph }} </textarea>
                 </div>
 

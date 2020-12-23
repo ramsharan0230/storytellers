@@ -18,7 +18,7 @@
                                 <span class="featured-icon">
                                     <img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
-                                    <h3>{{ $featureEvent->highlight_text }}</h3>
+                                    <h3>{{ $featureEvent->title }}</h3>
                                     <p class="featured-name">{{ $featureEvent->guest->name }}</p>
                                 </div>
                             </a>
@@ -28,7 +28,7 @@
                 <p>No Event Found</p>
                 @endforelse
                </div>
-               <span class="video-btn-wrapper"><a href="#" class="more-btn btn">More Videos</a></span>
+               <span class="video-btn-wrapper"><a href="{{ route('video-list') }}" class="more-btn btn">More Videos</a></span>
             </div>
             <div id="recent" class="tab-pane fade">
                 <div class="row front-tab-wrapper">
@@ -42,7 +42,7 @@
                                 <span class="featured-icon">
                                     <img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
-                                    <h3>{{ $featureEvent->highlight_text }}</h3>
+                                    <h3>{{ $featureEvent->title }}</h3>
                                     <p class="featured-name">{{ $featureEvent->guest->name }}</p>
                                 </div>
                             </a>
@@ -52,7 +52,7 @@
                 <p>No Event Found</p>
                 @endforelse
                </div>
-               <span class="video-btn-wrapper"><a href="#" class="more-btn btn">More Videos</a></span>
+               <span class="video-btn-wrapper"><a href="{{ route('video-list') }}" class="more-btn btn">More Videos</a></span>
             </div>
         </div>
     </div>

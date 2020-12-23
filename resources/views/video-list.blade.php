@@ -15,7 +15,7 @@
             @forelse ($allEvents as $key => $featureEvent)
                 @if($key == 0)
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$featureEvent->youtubeVideo($featureEvent->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-                <a href="#" class="featured-title-side video-list-title">
+                <a href="{{ route('event-detail', $featureEvent->slug) }}" class="featured-title-side video-list-title">
                     <span class="featured-name video-name video-list-name">Mr. Anil Chitrakar</span>
                     <p>{{ $featureEvent->guest->name }}, {{ $featureEvent->guest->organization }}</p>
                 </a>
@@ -29,7 +29,7 @@
             @forelse ($allEvents as $event)
                 <div class="video-block">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-                    <a href="#" class="featured-title-side video-list-title">
+                    <a {{ route('event-detail', $event->slug) }} class="featured-title-side video-list-title">
                         <span class="featured-name video-name video-list-name">{{ $event->guest->name }}</span>
                         <p>{{ $event->guest->designation }}, {{ $event->guest->organization }}</p>
                     </a>
@@ -46,22 +46,27 @@
         </div>
     </div>
 </section>
-
 <div class="inner-event-section all-sec-padding">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-12">
-                <a href="#" class="about-title-side event-title"><h2>Upcoming <br> events</h2></a>
-                <a href="#" class="read-more-btn btn">Book your ticket</a>
-            </div>
-            <div class="col-lg-8 col-md-8 col-12">
-                <div class="inner-event">
-                    <div class="image-wrapper">
-                        <a href="#" class="event-slider-image"><img src="{{ asset('images/music series_3.jpg') }}" alt="image"></a>
+        @forelse ($upcomingEvents as $upcomingEvent)
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <a href="{{ route('bookings') }}" class="about-title-side event-title"><h2>Upcoming <br> events</h2></a>
+                    <a href="{{ route('bookings') }}" class="read-more-btn btn">Book your ticket</a>
+                </div>
+                <div class="col-lg-8 col-md-8 col-12">
+                    <div class="event-slider">
+                        <div class="image-wrapper">
+                            <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingEvent->banner_image }}" alt="image"></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @empty
+            <div class="row">
+                <h2>No Upcoming Event!!</h2>
+            </div>
+        @endforelse
     </div>
 </div>
 

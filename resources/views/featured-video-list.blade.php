@@ -15,7 +15,7 @@
             @forelse ($allEvents as $key => $featureEvent)
                 @if($key == 0)
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$featureEvent->youtubeVideo($featureEvent->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-                <a href="#" class="featured-title-side video-list-title">
+                <a href="{{ route('event-detail', $featureEvent->slug) }}" class="featured-title-side video-list-title">
                     <span class="featured-name video-name video-list-name">{{ $featureEvent->series->name }}</span>
                     <p>{{ $featureEvent->guest->name }}, {{ $featureEvent->guest->organization }}</p>
                 </a>
@@ -29,7 +29,7 @@
             @forelse ($allEvents as $event)
                 <div class="video-block">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-                    <a href="#" class="featured-title-side video-list-title">
+                    <a href="{{ route('event-detail', $event->slug) }}" class="featured-title-side video-list-title">
                         <span class="featured-name video-name video-list-name">{{ $event->guest->name }}</span>
                         <p>{{ $event->guest->designation }}, {{ $event->guest->organization }}</p>
                     </a>

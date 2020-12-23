@@ -20,15 +20,15 @@ class BlogController extends Controller
 
     public function blogDetail($slug){
         $blog = Blog::where('slug', $slug)->first();
-        $relatedBlogs = Blog::where('title','LIKE','%'.$blog->title.'%')->orWhere('short_description','LIKE','%'.$blog->short_description.'%')
-        ->orWhere('description','LIKE','%'.$blog->description.'%')->where('id', '!=', $blog->id)->get();
+        $relatedBlogs = Blog::where('id', '!=', $blog->id)->limit(3)->get();
         $events = Blog::where('slug', $slug)->get();
         $allSeries = Series::where('publish', 1)->get();
         $allEvents = Event::where('publish', 1)->get();
         $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
-        $recentEvents = Event::orderByDesc('created_at', 'DESC')->limit(5)->get();
-        $featuredEvents = Event::where('video_type', 'featured')->orderByDesc('created_at', 'DESC')->limit(5)->get();
+        $recentEvents = Event::where('video_type', '!=', 'featured')->orderByDesc('created_at', 'DESC')->limit(6)->get();
+        $featuredEvents = Event::where('video_type', 'featured')->orderByDesc('created_at', 'DESC')->limit(6)->get();
         $upcomingEvents = UpcomingEvent::where('publish', 1)->limit(5)->get();
+        
         return view('blog-detail', compact('events', 'allSeries', 'blog', 'allEvents', 'blogs', 'recentEvents', 'featuredEvents', 'upcomingEvents', 'relatedBlogs'));
     }
 }

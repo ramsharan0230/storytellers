@@ -125,7 +125,12 @@
                             <div class="block-content">
                                 <div class="about-title-side">
                                     <h2>{{ $blogs[0]->title }}</h2>
-                                    <p>{{ $blogs[0]->short_description }}</p>
+                                    @if(strlen($blogs[0]->short_description) > 100)
+                                        <p>{{substr($blogs[0]->short_description,0,100)}}</p>
+                                    @else
+                                        <p>{{$blogs[0]->short_description}}</p>
+                                    @endif
+                                    ....
                                 </div>
                             </div>
                         </a>
@@ -147,7 +152,12 @@
                                 <div class="about-title-side">
                                     <h2>{{ $blogs[2]->title }}</h2>
                                     <img src="{{ asset('images/banners').'/'.$blogs[2]->image }}" class="block-right-image" alt="image">
-                                    <p>{{ $blogs[2]->short_description }}</p>
+                                    @if(strlen($blogs[2]->short_description) > 100)
+                                        <p>{{substr($blogs[2]->short_description,0,100)}}</p>
+                                    @else
+                                        <p>{{$blogs[2]->short_description}}</p>
+                                    @endif
+                                    ....
                                 </div>
                             </div>
                             <div href="{{ route('blog-detail', $blogs[2]->slug) }}" class="slider-btn block-btn btn " tabindex="0">
@@ -183,11 +193,17 @@
                             <div class="block-content">
                                 <div class="about-title-side">
                                     <h2>{{ $blogs[4]->title }}</h2>
-                                    <p>{{ $blogs[4]->short_description }}</p>
+                                    
+                                    @if(strlen($blogs[4]->short_description) > 300)
+                                        <p>{{substr($blogs[4]->short_description,0,300)}}</p>
+                                    @else
+                                        <p>{{$blogs[4]->short_description}}</p>
+                                    @endif
+                                    ....
                                 </div>
                             </div>
                         </a>
-                        <span class="read-btn-wrapp"><a href="#" class="read-more-btn btn">Read More Stories</a></span>
+                        <span class="read-btn-wrapp" style="margin-right: 0"><a href="{{ route('blogs') }}" class="read-more-btn btn">Read More Stories</a></span>
                     </div>
                 </div>
                 @endif

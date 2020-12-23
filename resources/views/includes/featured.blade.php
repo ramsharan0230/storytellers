@@ -32,18 +32,18 @@
             </div>
             <div id="recent" class="tab-pane fade">
                 <div class="row front-tab-wrapper">
-                    @forelse ($allEvents as $key => $featureEvent)
+                    @forelse ($recentEvents as $key => $recentEvent)
                    <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                        <div class="featured-card">
-                           <a href="{{ route('event-detail', $featureEvent->slug) }}" class="feature-image">
-                                <img src="{{ asset('images/banners').'/'.$featureEvent->banner_image }}" class="block-right-image" alt="image"><span class="feature-time">29:30</span>
+                           <a href="{{ route('event-detail', $recentEvent->slug) }}" class="feature-image">
+                                <img src="{{ asset('images/banners').'/'.$recentEvent->banner_image }}" class="block-right-image" alt="image">
                             </a>
-                            <a href="{{ route('event-detail', $featureEvent->slug) }}" class="featured-title-wrapp">
+                            <a href="{{ route('event-detail', $recentEvent->slug) }}" class="featured-title-wrapp">
                                 <span class="featured-icon">
                                     <img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
                                 <div class="featured-title-side">
-                                    <h3>{{ $featureEvent->title }}</h3>
-                                    <p class="featured-name">{{ $featureEvent->guest->name }}</p>
+                                    <h3>{{ $recentEvent->title }}</h3>
+                                    <p class="featured-name">{{ $recentEvent->guest->name }}</p>
                                 </div>
                             </a>
                        </div>

@@ -60,7 +60,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
             'guest_id' => 'required|integer',
             'series_id' => 'required|integer',
@@ -178,7 +177,7 @@ class EventController extends Controller
 
         $img1 = Image::make($image->getRealPath());
         
-        $img1->fit(683, 373, function ($constraint) {
+        $img1->fit(650, 365, function ($constraint) {
             $constraint->aspectRatio();
         })->save($thumbPath . '/' . $input['imagename']);
         $img1->destroy();

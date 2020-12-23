@@ -30,13 +30,13 @@
         <div class="row">
             <div class="col-lg-8  col-12">
                 <h1 class="featured-name">{{ $blog->title }}</h1>
-                <p class="mt-2">{{ $blog->created_at }}</p>
+                <p class="mt-2"><b>{{ $blog->created_at->format('Y-m-d') }}</b></p>
                 <div class="details">
                     <p>
-                        {{ $blog->short_description }}
+                        {{ strip_tags($blog->short_description) }}
                     </p>
                     <p>
-                        {{ $blog->description }}
+                        {{ strip_tags($blog->description) }}
                     </p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <div class="clip-box mt-5">
                         <div class="overlay-box"></div>
                         <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
-                        <p>{{ $blog->title }}</p>
+                        <a href="{{ route('blog-detail', $blog->slug) }}"><p>{{ $blog->title }}</p></a>
                     </div>
                     <div class="clip-box mt-5">
                     @empty
@@ -77,7 +77,7 @@
                     <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                         <div class="featured-card">
                             <a href="{{ route('event-detail', $featuredEvent->slug) }}" class="feature-image">
-                                <img src="{{ asset('images/banners').'/'.$featuredEvent->banner_image }}" alt="image"><span class="feature-time">29:30</span>
+                                <img src="{{ asset('images/banners').'/'.$featuredEvent->banner_image }}" alt="image">
                             </a>
                             <a href="{{ route('event-detail', $featuredEvent->slug) }}" class="featured-title-wrapp">
                                 <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
@@ -92,7 +92,7 @@
                        
                    @endforelse
                </div>
-               <span class="video-btn-wrapper"><a href="{{ route('video-list') }}" class="more-btn btn">More Videos</a></span>
+               <span class="video-btn-wrapper"><a href="{{ route('featured-video-list') }}" class="more-btn btn">More Videos</a></span>
             </div>
             <div id="recent" class="tab-pane fade">
                 <div class="row front-tab-wrapper">
@@ -100,7 +100,7 @@
                    <div class="col-lg-4 col-md-6 col-6 col-wrapp">
                         <div class="featured-card">
                             <a href="{{ route('event-detail', $recentEvent->slug) }}" class="feature-image">
-                                <img src="{{ asset('images/banners').'/'.$recentEvent->banner_image }}" alt="image"><span class="feature-time">29:30</span>
+                                <img src="{{ asset('images/banners').'/'.$recentEvent->banner_image }}" alt="image">
                             </a>
                             <a href="{{ route('event-detail', $recentEvent->slug) }}" class="featured-title-wrapp">
                                 <span class="featured-icon"><img src="{{ asset('images/icon_arrrow-right_2-u4551-fr.png') }}" id="hidden-on-hover" alt="icon"><img src="{{ asset('images/icon_arrrow-right_2-2.png') }}" id="display-on-hover" alt="icon"></span>
@@ -125,29 +125,7 @@
 
 <!-- events section starts -->
 
-<section class="events-section all-sec-padding">
-    <div class="container">
-        @forelse ($upcomingEvents as $upcomingEvent)
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-12">
-                    <a href="{{ route('bookings') }}" class="about-title-side event-title"><h2>Upcoming <br> events</h2></a>
-                    <a href="{{ route('bookings') }}" class="read-more-btn btn">Book your ticket</a>
-                </div>
-                <div class="col-lg-8 col-md-8 col-12">
-                    <div class="event-slider">
-                        <div class="image-wrapper">
-                            <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingEvent->banner_image }}" alt="image"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div class="row">
-                <h2>No Upcoming Event!!</h2>
-            </div>
-        @endforelse
-    </div>
-</section>
+@include('includes.upcoming-events')
 
 <!-- event section ends -->
 

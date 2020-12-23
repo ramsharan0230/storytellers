@@ -19,11 +19,15 @@ class HomeController extends Controller
     protected $pastEvents = null;
     protected $featuredEvents = null;
     protected $dashboards = null;
+    protected $recentEvents = null;
+    protected $upcomingEvents = null;
 
     public function __construct()
     {
         $this->allEvents = Event::where('publish', 1)->get();
-        $this->featuredEvents = Event::where('video_type', 'featured')->get();
+        $this->recentEvents = Event::where('publish', 1)->where('video_type', '!=', 'featured')->orderBy('created_at', 'DESC')->limit(6)->get();
+        $this->featuredEvents = Event::where('video_type', 'featured')->limit(6)->get();
+        $this->upcomingEvents = UpcomingEvent::where('publish', 1)->orderBy('created_at', 'DESC')->get();
         
         $this->allSeries = Series::where('publish', 1)->get();
         $this->blogs = Blog::where('publish', 1)->limit(5)->orderBy('created_at', 'DESC')->get();
@@ -39,10 +43,12 @@ class HomeController extends Controller
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
         $featuredEvents = $this->featuredEvents;
+        $recentEvents = $this->recentEvents;
         $sliders = Event::where('slider', 1)->get();
         $dashboards = $this->dashboards;
         $about = About::first();
-        return view('home', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'featuredEvents', 'sliders', 'dashboards', 'about'));
+        $upcomingEvents = $this->upcomingEvents;
+        return view('home', compact('allEvents', 'upcomingEvents', 'allSeries', 'blogs', 'pastEvents', 'featuredEvents', 'sliders', 'dashboards', 'about', 'recentEvents'));
     }
     public function about(){
         $allEvents = $this->allEvents;
@@ -50,7 +56,7 @@ class HomeController extends Controller
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
         $about = About::first();
-        $upcomingEvents = UpcomingEvent::where('publish', 1)->get();
+        $upcomingEvents = $this->upcomingEvents;
         return view('about-us', compact(['allEvents', 'allSeries', 'blogs', 'pastEvents', 'about', 'upcomingEvents']));
     }
 
@@ -65,7 +71,7 @@ class HomeController extends Controller
 
     public function boookings(){
         $allEvents = $this->allEvents;
-        $upcomingEvents = UpcomingEvent::where('publish', 1)->get();
+        $upcomingEvents = $this->upcomingEvents;
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
@@ -74,21 +80,21 @@ class HomeController extends Controller
     }
 
     public function videoList(){
-        $allEvents = $this->allEvents;
+        $recentEvents = $this->recentEvents;
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
-        $upcomingEvents = UpcomingEvent::where('publish', 1)->orderBy('created_at', 'DESC')->get();
-        return view('video-list', compact('allEvents', 'allSeries', 'blogs', 'pastEvents', 'upcomingEvents'));
+        $upcomingEvents = $this->upcomingEvents;
+        return view('video-list', compact('recentEvents', 'allSeries', 'blogs', 'pastEvents', 'upcomingEvents'));
     }
 
     public function FeaturedVideo(){
-        $allEvents = $this->featuredEvents;
+        $allFeaturedEvents = Event::where('video_type', 'featured')->where('publish', 1)->get();
         $allSeries = $this->allSeries;
         $blogs = $this->blogs;
         $pastEvents = $this->pastEvents;
-
-        return view('featured-video-list', compact('allEvents', 'allSeries', 'blogs', 'pastEvents'));
+        $upcomingEvents = $this->upcomingEvents;
+        return view('featured-video-list', compact('allFeaturedEvents', 'allSeries', 'blogs', 'pastEvents', 'upcomingEvents'));
     }
     
 }

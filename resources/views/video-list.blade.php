@@ -12,12 +12,12 @@
 <section class="video-list-page">
     <div class="container">
         <div class="innerpage-video-wrapp video-list-wrapper">
-            @forelse ($allEvents as $key => $featureEvent)
+            @forelse ($recentEvents as $key => $recentEvent)
                 @if($key == 0)
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$featureEvent->youtubeVideo($featureEvent->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-                <a href="{{ route('event-detail', $featureEvent->slug) }}" class="featured-title-side video-list-title">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$recentEvent->youtubeVideo($recentEvent->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
+                <a href="{{ route('event-detail', $recentEvent->slug) }}" class="featured-title-side video-list-title">
                     <span class="featured-name video-name video-list-name">Mr. Anil Chitrakar</span>
-                    <p>{{ $featureEvent->guest->name }}, {{ $featureEvent->guest->organization }}</p>
+                    <p>{{ $recentEvent->guest->name }}, {{ $recentEvent->guest->organization }}</p>
                 </a>
                 @endif
             @empty
@@ -26,14 +26,18 @@
             
         </div>
         <div class="video-list-wrapp">
-            @forelse ($allEvents as $event)
+            @forelse ($recentEvents as $key => $event)
+                @if($key==0)
+                    @continue
+                @else
                 <div class="video-block">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
-                    <a {{ route('event-detail', $event->slug) }} class="featured-title-side video-list-title">
+                    <a href="{{ route('event-detail', $event->slug) }}" class="featured-title-side video-list-title">
                         <span class="featured-name video-name video-list-name">{{ $event->guest->name }}</span>
                         <p>{{ $event->guest->designation }}, {{ $event->guest->organization }}</p>
                     </a>
                 </div>
+                @endif
             @empty
                 <div class="video-block">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/wGqJFtxWoqM)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            
@@ -46,29 +50,7 @@
         </div>
     </div>
 </section>
-<div class="inner-event-section all-sec-padding">
-    <div class="container">
-        @forelse ($upcomingEvents as $upcomingEvent)
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-12">
-                    <a href="{{ route('bookings') }}" class="about-title-side event-title"><h2>Upcoming <br> events</h2></a>
-                    <a href="{{ route('bookings') }}" class="read-more-btn btn">Book your ticket</a>
-                </div>
-                <div class="col-lg-8 col-md-8 col-12">
-                    <div class="event-slider">
-                        <div class="image-wrapper">
-                            <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingEvent->banner_image }}" alt="image"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div class="row">
-                <h2>No Upcoming Event!!</h2>
-            </div>
-        @endforelse
-    </div>
-</div>
+@include('includes.upcoming-events')
 
 <!-- event section ends -->
 

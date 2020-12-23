@@ -42,6 +42,7 @@
                     </div>
                 </a>
             </div>
+            
         </div>
         @endif
         @if(count($blogs)==5 || count($blogs)>5)
@@ -73,8 +74,10 @@
                         </div>
                     </div>
                 </a>
+                <span class="read-btn-wrapp" style="margin-right: 0"><a href="{{ route('blogs') }}" class="read-more-btn btn">Read More Stories</a></span>
             </div>
         </div>
         @endif
+        
     </div>
 </section>

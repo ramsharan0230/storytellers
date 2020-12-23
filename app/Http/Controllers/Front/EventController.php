@@ -19,6 +19,7 @@ class EventController extends Controller
     {
         $dayToCheck = \Carbon\Carbon::now()->subDays($this->dayAgo)->format('Y-m-d');
         $this->pastEvents = Event::whereDate("created_at", '>=', $dayToCheck)->get();
+        $this->upcomingEvents = UpcomingEvent::where('publish', 1)->orderBy('created_at', 'DESC')->get();
     }
     /**
      * Display a listing of the resource.
@@ -103,11 +104,12 @@ class EventController extends Controller
         ->orWhere('title', 'like', '%' . $event->title . '%')
         ->get();
 
-        $featuredVideo = Event::where('video_type', 'featured')->first();
+        $featuredVideo = Event::where('video_type', 'featured')->where('publish', 1)->first();
         $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
         $pastEvents = $this->pastEvents;
         $allSeries = Series::where('publish', 1)->get();
-        $upcomingEvents = UpcomingEvent::where('publish', 1)->get();
+        $upcomingEvents = $this->upcomingEvents;
+
         return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'allSeries', 'featuredVideo', 'blogs', 'pastEvents', 'upcomingEvents'));
     }
 
@@ -115,7 +117,9 @@ class EventController extends Controller
         $events = Event::where('series_id', $id)->with('guest')->get();
         $allSeries = Series::where('publish', 1)->get();
         $blogs = Blog::orderByDesc('created_at', 'DESC')->limit(5)->get();
-        $allEvents = Event::where('status', 'upcoming')->get();
-        return view('series-detail', compact('events', 'allSeries', 'blogs', 'allEvents'));
+        $allEvents = Event::where('publish', 1)->get();
+        $upcomingEvents = $this->upcomingEvents;
+
+        return view('series-detail', compact('events', 'allSeries', 'blogs', 'allEvents', 'upcomingEvents'));
     }
 }

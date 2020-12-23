@@ -43,7 +43,7 @@
 
 <section class="events-section all-sec-padding">
     <div class="container">
-        @forelse ($upcomingEvents as $upcomingEvent)
+        
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-12">
                     <a href="{{ route('bookings') }}" class="about-title-side event-title"><h2>Upcoming <br> events</h2></a>
@@ -51,17 +51,18 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-12">
                     <div class="event-slider">
+                        @forelse ($upcomingEvents as $upcomingEvent)
                         <div class="image-wrapper">
                             <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingEvent->banner_image }}" alt="image"></a>
                         </div>
+                        @empty
+                            <div class="row">
+                                <h2>No Upcoming Event!!</h2>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
-        @empty
-            <div class="row">
-                <h2>No Upcoming Event!!</h2>
-            </div>
-        @endforelse
     </div>
 </section>
 <!-- event section ends -->

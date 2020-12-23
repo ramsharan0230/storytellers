@@ -28,7 +28,6 @@
         <div class="video-list-wrapp">
             @forelse ($recentEvents as $key => $event)
                 @if($key==0)
-                    @continue
                 @else
                 <div class="video-block">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$event->youtubeVideo($event->video_link)}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>            

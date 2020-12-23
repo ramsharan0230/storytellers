@@ -7,12 +7,12 @@
             </div>
             <div class="col-lg-8 col-md-8 col-12">
                 <div class="event-slider">
-                    @forelse ($upcomingEvents as $upcomingEvent)
+                    @forelse ($upcomingEvents as $upcomingtEvent)
                     <div class="image-wrapper">
-                        <a href="#" class="event-slider-image"><img src="{{ asset('images/event-storytellers-series.jpg') }}" alt="image"></a>
+                        <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingtEvent->banner_image }}" alt="image"></a>
                     </div>
                     @empty
-                    <h2>No Upcoming Event!!</h2>
+                    <h2>No Upcoming Event!</h2>
                     @endforelse
                 </div>
             </div>

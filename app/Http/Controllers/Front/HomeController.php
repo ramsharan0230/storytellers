@@ -28,7 +28,6 @@ class HomeController extends Controller
         $this->recentEvents = Event::where('publish', 1)->where('video_type', '!=', 'featured')->orderBy('created_at', 'DESC')->limit(6)->get();
         $this->featuredEvents = Event::where('video_type', 'featured')->limit(6)->get();
         $this->upcomingEvents = UpcomingEvent::where('publish', 1)->orderBy('created_at', 'DESC')->get();
-        
         $this->allSeries = Series::where('publish', 1)->get();
         $this->blogs = Blog::where('publish', 1)->limit(5)->orderBy('created_at', 'DESC')->get();
         $this->dashboards = Dashboard::first();

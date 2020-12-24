@@ -59,15 +59,16 @@
                 <a href="{{ route('bookings') }}" class="read-more-btn btn">Book your ticket</a>
             </div>
             <div class="col-lg-8 col-md-8 col-12">
-                @forelse ($upcomingEvents as $upcomingEvent)
+                
                 <div class="event-slider">
+                    @forelse ($upcomingEvents as $upcomingEvent)
                     <div class="image-wrapper">
                         <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingEvent->banner_image }}" alt="image"></a>
                     </div>
+                    @empty
+                        <h2>No Upcoming Event!!</h2>
+                    @endforelse
                 </div>
-                @empty
-                    <h2>No Upcoming Event!!</h2>
-                @endforelse
             </div>
         </div>
     </div>

@@ -11,7 +11,12 @@
             </div>
             <div class="col-lg-8 col-md-8 col-12">
                 <div class="about-content-side">
-                    <h3>{{ $about->highlight_text }} ...</h3>
+                    @if(strlen($about->highlight_text) > 500)
+                    <p>{!! substr($about->highlight_text,0,500) !!}</p>
+                    @else
+                    <p>{!! $about->highlight_text !!}</p>
+                    @endif
+                    ....
                 </div>
             </div>
         </div>

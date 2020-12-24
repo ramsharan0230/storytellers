@@ -100,6 +100,7 @@ class EventController extends Controller
     public function eventDetail($slug){
         $allEvents = Event::where('publish', 1)->get();
         $event = Event::where('slug', $slug)->with('guest')->first();
+        $similerVideos = Event::where('slug', "!=", $slug)->limit(3)->get();
         $guestVideos = Event::where('guest_id', $event->guest->id)
         ->orWhere('title', 'like', '%' . $event->title . '%')
         ->get();
@@ -110,7 +111,7 @@ class EventController extends Controller
         $allSeries = Series::where('publish', 1)->get();
         $upcomingEvents = $this->upcomingEvents;
 
-        return view('event-detail', compact('event', 'allEvents', 'guestVideos', 'allSeries', 'featuredVideo', 'blogs', 'pastEvents', 'upcomingEvents'));
+        return view('event-detail', compact('event', 'similerVideos', 'allEvents', 'guestVideos', 'allSeries', 'featuredVideo', 'blogs', 'pastEvents', 'upcomingEvents'));
     }
 
     public function seriesDetail($id){

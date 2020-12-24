@@ -53,7 +53,7 @@
                         <td>{{ucfirst($data->title)}}</td>
                         <td>{{$data->guest->name}}</td>
                         <td>{{ $data->series->name }}</td>
-                        <td>{{$data->highlight_text}}</td>
+                        <td>{!! $data->highlight_text !!}</td>
                         <td><img src="{{ asset('images/banners/'.$data->banner_image)}}" width="100px" height="50px" alt="" srcset=""></td>
                         <td>
                             <div class="check-list">

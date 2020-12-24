@@ -27,27 +27,27 @@
                                 <div class="innerpage-detail">
                                     <span>{{ $event->guest->name }}, {{ $event->guest->designation }}, {{ $event->guest->organization }}</span>
                                     <h2>{{ $event->title }}</h2>
-                                    <p>{{ $event->first_patagraph }}</p>
-                                    <p>{{ $event->second_patagraph }}</p>
+                                    <p>{!! $event->first_patagraph !!}</p>
+                                    <p>{!! $event->second_patagraph !!}</p>
                                 </div>
                                 <div class="innerother-detail">
-                                    <h3>{{ $event->highlight_text }}</h3>
-                                    <p>{{ $event->descriptions }}</p>
+                                    <h3>{!! $event->highlight_text !!}</h3>
+                                    <p>{!! $event->descriptions !!}</p>
                                 </div>
                             </div>
                             <div id="storyteller" class="tab-pane fade">
                                 <div class="storyteller-section">
                                     <div class="story-image-side"><span><img src="{{ asset('images/thumbnail').'/'.$event->guest->photo }}" alt="image"></span></div>
                                     <div class="story-content-side">
-                                        <p>{{ $event->guest->description }}</p>
+                                        <p>{!! $event->guest->description !!}</p>
                                     </div>
                                 </div>
                                 <div class="story-image-section">
                                         @forelse ($event->eventgalleries as $gallery)
                                         <img src="{{ asset('images/event/gallery').'/'.$gallery->file_name }}">
                                         @empty
-                                        <p>No guest video found</p>
-                                    @endforelse
+                                        
+                                        @endforelse
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="innerpage-sidebar">
                         <h2>Similar Videos</h2>
-                        @forelse ($allEvents as $similer_video)
+                        @forelse ($similerVideos as $similer_video)
                             <div class="featured-card">
                                 <a href="{{ route('event-detail', $similer_video->slug) }}" class="feature-image">
                                     <iframe src="https://www.youtube.com/embed/{{$event->youtubeVideo($similer_video->video_link)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -218,12 +218,14 @@
                         <a href="{{ route('bookings') }}" class="read-more-btn btn">Book your ticket</a>
                     </div>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <div class="inner-event">
-                            <div class="image-wrapper">
-                                @foreach ($upcomingEvents as $upcomingtEvent)
+                        <div class="event-slider">
+                            @forelse ($upcomingEvents as $upcomingtEvent)
+                                <div class="image-wrapper">
                                     <a href="{{ route('bookings') }}" class="event-slider-image"><img src="{{ asset('images/upcoming').'/'.$upcomingtEvent->banner_image }}" alt="image"></a>
-                                @endforeach
-                            </div>
+                                </div>
+                            @empty
+                                <h2>No Upcoming Event!</h2>
+                            @endforelse
                         </div>
                     </div>
                 </div>

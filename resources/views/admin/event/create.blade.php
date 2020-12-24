@@ -70,17 +70,17 @@
 
                   <div class="form-group">
                     <label for="first_patagraph">Above Text Highlight(First)</label>
-                    <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description...">{{old('first_patagraph')}} </textarea>
+                    <textarea name="first_patagraph" id="" rows="3" class="ckeditor form-control" placeholder="Paragraph Description...">{{old('first_patagraph')}} </textarea>
                   </div>
 
                   <div class="form-group">
                     <label for="second_patagraph">Above Text Highlight(Second)</label>
-                    <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description...">{{old('second_patagraph')}} </textarea>
+                    <textarea name="second_patagraph" id="" rows="3" class="ckeditor form-control" placeholder="Paragraph Description...">{{old('second_patagraph')}} </textarea>
                   </div>
 
                   <div class="form-group">
                     <label for="highlight_text">Highlight Text</label>
-                    <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" >{{old('highlight_text')}} </textarea>
+                    <textarea name="highlight_text" id="highlight_text" rows="3" class="form-control" placeholder="Enter Highlight Text" >{{old('highlight_text')}} </textarea>
                   </div>
 
                   <div class="form-group">
@@ -108,7 +108,7 @@
 
                   <div class="form-group">
                     <label for="descriptions">Descriptions</label>
-                    <textarea name="descriptions" id="descriptions" cols="30" rows="10" class="form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> </textarea>
+                    <textarea name="descriptions" id="descriptions" rows="10" class="ckeditor form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> </textarea>
                   </div>
   
                   <div class="check-list">
@@ -147,4 +147,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"> </script>
 <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
+  </script>
 @endpush

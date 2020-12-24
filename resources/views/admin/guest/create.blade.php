@@ -95,7 +95,7 @@
           
                           <div class="form-group">
                             <label>Descrptions</label>
-                            <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Enter Password" value="{{old('password')}}"> </textarea>
+                            <textarea name="description" rows="10" class="form-control ckeditor" placeholder="Enter Password" value="{{old('password')}}"> </textarea>
                           </div>
           
                           <div class="check-list">
@@ -161,6 +161,12 @@
   });
   
   
+  </script>
+  <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
   </script>
 @endpush
 

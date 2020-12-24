@@ -58,15 +58,13 @@
 
                         <div class="form-group">
                             <label>Short Description</label>
-                            <textarea name="short_description" class="form-control" rows="8"
-                                cols="80">{{$detail->short_description}}</textarea>
+                            <textarea name="short_description" class="ckeditor form-control" rows="8">{{$detail->short_description}}</textarea>
                         </div>
 
 
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" class="form-control" rows="8"
-                                cols="80">{{$detail->description}}</textarea>
+                            <textarea name="description" class="ckeditor form-control" rows="8">{{$detail->description}}</textarea>
                         </div>
 
                         <div class="form-group">
@@ -105,8 +103,18 @@
 @endsection
 
 @push('scripts')
-
-@include('admin.layouts._partials.ckeditorsetting')
 @include('admin.layouts._partials.imagepreview')
-
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+{{-- @include('admin.layouts._partials.ckeditorsetting') --}}
+@include('admin.layouts._partials.imagepreview')
+  <!-- CK Editor -->
+  <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
+  </script>
 @endpush

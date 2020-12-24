@@ -2,6 +2,7 @@
 @section('page_title', 'Create blog')
 
 @push('styles')
+
 <style media="screen">
     .line {
         width: 100%;
@@ -56,14 +57,12 @@
 
                         <div class="form-group">
                             <label>Short Description</label>
-                            <textarea name="short_description" class="form-control" rows="8"
-                                cols="80">{{old('short_description')}}</textarea>
+                            <textarea name="short_description" class="ckeditor form-control" rows="4">{{old('short_description')}}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" class="form-control" rows="8"
-                                cols="80">{{old('description')}}</textarea>
+                            <textarea name="description" class="ckeditor form-control" rows="8" >{{old('description')}}</textarea>
                         </div>
 
                         <div class="form-group">
@@ -81,9 +80,7 @@
                                 <input name="publish" type="checkbox" checked>
                                 <span class="input-span"></span>Publish</label>
                         </div>
-
                         <br>
-
                         <div class="form-group">
                             <button class="btn btn-default" type="submit">Submit</button>
                         </div>
@@ -100,6 +97,17 @@
 @endsection
 
 @push('scripts')
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 {{-- @include('admin.layouts._partials.ckeditorsetting') --}}
 @include('admin.layouts._partials.imagepreview')
+  <!-- CK Editor -->
+  <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
+  </script>
 @endpush

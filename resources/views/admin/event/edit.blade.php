@@ -104,17 +104,17 @@
                 </div>
                 <div class="form-group">
                   <label for="first_patagraph">Above Text Highlight(First)</label>
-                  <textarea name="first_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('first_patagraph')}}"> {{ $detail->first_patagraph }}</textarea>
+                  <textarea name="first_patagraph" rows="5" class="ckeditor form-control" placeholder="Paragraph Description..." value="{{old('first_patagraph')}}"> {{ $detail->first_patagraph }}</textarea>
                 </div>
 
                 <div class="form-group">
                   <label for="second_patagraph">Above Text Highlight(Second)</label>
-                  <textarea name="second_patagraph" id="" cols="30" rows="5" class="form-control" placeholder="Paragraph Description..." value="{{old('second_patagraph')}}">{{ $detail->second_patagraph }} </textarea>
+                  <textarea name="second_patagraph" id="" rows="5" class="ckeditor form-control" placeholder="Paragraph Description..." value="{{old('second_patagraph')}}">{{ $detail->second_patagraph }} </textarea>
                 </div>
 
                 <div class="form-group">
                   <label for="highlight_text">Highlight Text</label>
-                  <textarea name="highlight_text" id="highlight_text" cols="30" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}">{{ $detail->highlight_text }} </textarea>
+                  <textarea name="highlight_text" id="highlight_text" rows="3" class="form-control" placeholder="Enter Highlight Text" value="{{old('highlight_text')}}">{{ $detail->highlight_text }} </textarea>
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -141,7 +141,7 @@
 
                 <div class="form-group">
                   <label>Descriptions</label>
-                  <textarea name="descriptions" id="" cols="30" rows="10" class="form-control" placeholder="Enter Descriptions..." value="{{old('descriptions')}}"> {{ $detail->highlight_text }}</textarea>
+                  <textarea name="descriptions" id="" cols="30" rows="10" class="ckeditor form-control" value="{{old('descriptions')}}"> {{ $detail->descriptions }}</textarea>
                 </div>
 
                 <div class="check-list">
@@ -237,4 +237,10 @@ $(function() {
 });
 
 </script>
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
+  </script>
 @endpush

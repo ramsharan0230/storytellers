@@ -1,12 +1,12 @@
 <section class="main-slider">
     <div class="container">
-        <div class="main-slide">
+        <div class="main-slide" style="margin-top: -50px">
             @forelse($sliders as $key => $slider)
-            <div class="slider-wrapper">
+            <div class="slider-wrapper" style="width: 100%; display: inline-block;">
                 <div class="row">
                     <div class="col-lg-7 col-md-7 col-12">
                         <a href="{{ route('event-detail', $slider->slug) }}" class="slider-image-side">
-                            <img src="{{ asset('images/banners/'.$slider->banner_image) }}" alt="slider-image">
+                            <img width="635px" height="370px"  src="{{ asset('images/banners/'.$slider->banner_image) }}" alt="slider-image">
                             <span class="slider-time">29:17</span>
                         </a>
                     </div>
@@ -21,9 +21,9 @@
                                 
                                 <h1>
                                     @if(strlen($slider->highlight_text) > 60)
-                                    {{substr($slider->highlight_text,0,60)}}
+                                    {!! substr($slider->highlight_text,0,60) !!}
                                     @else
-                                    {{$slider->highlight_text}}
+                                    {!! $slider->highlight_text !!}
                                     @endif
                                     ....
                                 </h1>

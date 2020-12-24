@@ -91,7 +91,7 @@
 
                 <div class="form-group">
                     <label>Descrptions</label>
-                    <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Enter description" value="{{old('description')}}">{{ $detail->description }} </textarea>
+                    <textarea name="description" rows="10" class="form-control ckeditor" placeholder="Enter description" value="{{old('description')}}">{{ $detail->description }} </textarea>
                 </div>
 
                 <div class="check-list">
@@ -172,9 +172,6 @@ $(function() {
 });
 
 
-
-
-
 </script>
 <script type="text/javascript">
   $('body').on('click', '.remove',function(e){
@@ -225,5 +222,12 @@ $(function() {
         }
 
 </script>
+
+ <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('.ckeditor').ckeditor();
+      });
+  </script>
 
 @endpush

@@ -33,10 +33,10 @@
                 <p class="mt-2"><b>{{ $blog->created_at->format('Y-m-d') }}</b></p>
                 <div class="details">
                     <p>
-                        {{ strip_tags($blog->short_description) }}
+                        {!! $blog->short_description !!} 
                     </p>
                     <p>
-                        {{ strip_tags($blog->description) }}
+                        {!! $blog->description !!} 
                     </p>
                 </div>
             </div>

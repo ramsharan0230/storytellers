@@ -11,7 +11,12 @@
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[0]->title }}</h2>
-                            <p>{{ html_entity_decode($blogs[0]->short_description) }}</p>
+                                @if(strlen($blogs[0]->short_description) > 200)
+                                <p>{!! substr($blogs[0]->short_description,0,200) !!}</p>
+                                @else
+                                <p>{!! $blogs[0]->short_description !!}</p>
+                                @endif
+                                ....
                         </div>
                     </div>
                 </a>
@@ -33,7 +38,12 @@
                         <div class="about-title-side">
                             <h2>{{ $blogs[2]->title }}</h2>
                             <img src="{{ asset('images/banners').'/'.$blogs[2]->image }}" class="block-right-image" alt="image">
-                            <p>{{ html_entity_decode($blogs[2]->short_description) }}</p>
+                            @if(strlen($blogs[2]->short_description) > 200)
+                                    <p>{!! substr($blogs[2]->short_description,0,200) !!}</p>
+                                    @else
+                                    <p>{!! $blogs[2]->short_description !!}</p>
+                                    @endif
+                                    ....
                         </div>
                     </div>
                     <div class="slider-btn block-btn btn " tabindex="0">
@@ -70,7 +80,12 @@
                     <div class="block-content">
                         <div class="about-title-side">
                             <h2>{{ $blogs[4]->title }}</h2>
-                            <p>{{ html_entity_decode(htmlentities($blogs[4]->short_description)) }}</p>
+                            @if(strlen($blogs[4]->short_description) > 200)
+                                <p>{!! substr($blogs[4]->short_description,0,200) !!}</p>
+                                @else
+                                <p>{!! $blogs[4]->short_description !!}</p>
+                                @endif
+                                ....
                         </div>
                     </div>
                 </a>
